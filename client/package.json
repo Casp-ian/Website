@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run wasm && vite dev",
+    "build": "npm run wasm && vite build",
+    "preview": "vite preview",
+    "start": "npm run build && npm run preview",
+    "wasm": "wasm-pack build ../wasm/conway --target web"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.4.5",
+    "svelte": "^4.2.0",
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "page": "^1.11.6"
+  }
+}
