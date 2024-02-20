@@ -11,8 +11,21 @@
 </script>
 
 
-<div id="welcome" style="--background-image: {backgroundImageUrl}; --headerHeight: {headerHeight}">
-    <slot></slot>
+<!--<div id="welcome" style="&#45;&#45;background-image: {backgroundImageUrl}; &#45;&#45;headerHeight: {headerHeight}">-->
+<!--    <slot></slot>-->
+<!--</div>-->
+
+<div id="temp" style="--headerHeight: {headerHeight}">
+    <h3>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⢕⣿⣿⣿⣿⣫⠀⠀⠀⠀⠀⠀⣫⣿⣿⠀⠀⠀⠀⠀⠀⠀⡈⣿⣿⣿⣿⣿⠀⠀⠀⡈⣫⣿⣿⣿⣿⢕⠀⠀⠀⠀⢕⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣫⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀    <br>
+        ⠀⠀⠀⠀⣿⣿⣿⡈⠀⠀⠀⣫⠀⠀⠀⠀⠀⢕⣿⣿⣿⣿⠀⠀⠀⠀⠀⣿⣿⣿⠀⠀⠀⢕⠀⠀⠀⢕⣿⣿⠀⠀⡈⣿⣿⣿⠀⠀⢕⣿⣿⠀⠀⠀⠀⠀⣿⣿⣿⣿⣫⠀⠀⠀⠀⠀⣿⣿⣿⣿⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀    <br>
+        ⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡈⣿⣿⠀⣫⣿⣫⠀⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⢕⣿⣿⠀⠀⠀⠀⣿⣿⡈⠀⢕⣿⣿⠀⠀⠀⠀⣫⣿⣫⠀⣿⣿⡈⠀⠀⠀⠀⣿⣿⡈⣿⣿⡈⠀⠀⣿⣿⠀⠀⠀⠀    <br>
+        ⠀⠀⠀⣿⣿⡈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⣿⣿⢕⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⠀⠀⠀⢕⣿⣿⣿⣿⣿⣿⣿⢕⠀⠀⢕⣿⣿⠀⠀⠀⡈⣿⣿⠀⠀⠀⣿⣿⠀⠀⠀⠀⣿⣿⠀⠀⣫⣿⣿⠀⣿⣿⠀⠀⠀⠀    <br>
+        ⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⢕⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢕⣿⣿⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⣿⣿⠀⠀⠀⠀⣿⣿⣿⣿⠀⠀⠀⠀    <br>
+        ⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⡈⠀⣿⣿⣿⠀⠀⠀⠀⠀⢕⣿⣿⠀⠀⣿⣿⣫⣫⣿⣿⣿⣿⠀⠀⢕⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢕⣿⣿⠀⠀⣿⣿⢕⠀⠀⠀⠀⠀⣿⣿⣿⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀    <br>
+        ⠀⠀⠀⠀⠀⠀⠀⡈⢕⢕⡈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡈⢕⢕⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    <br>
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    <br>
+    </h3>
 </div>
 
 <svelte:window bind:scrollY={scroll} />
@@ -38,6 +51,18 @@
         background: var(--background-image) no-repeat center;
         background-size: cover;
 
+        text-shadow: 0 0 3px white, 0 0 5px white;
+    }
+
+    #temp {
+        height: calc(100vh - var(--headerHeight));
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+
+        background: rgb(27, 18, 18);
         text-shadow: 0 0 3px white, 0 0 5px white;
     }
 

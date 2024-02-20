@@ -8,12 +8,48 @@
         {
             id: "1",
             date: 1706773192213,
-            text: "Helloooo!",
+            text: "# Hello! \n \
+            Hello! \n \
+            Hello! \n \
+            Hello! \n \
+            Hello! \n \
+            Hello! \n \
+            Hello! \n \
+            this is in markdown \n \
+            i dont know how to do markdown \n \
+            but thats fine",
         },
         {
             id: "2",
             date: 1706472180713,
-            text: "Helloooouuuuuwdjomasmd!",
+            text: "# Longererererer title! \n \
+            this is in markdown \n \
+            this is in markdown \n \
+            this is in markdown \n \
+            this is in markdown \n \
+            this is in markdown \n \
+            this is in markdown \n \
+            this is in markdown \n \
+            this is in markdown \n \
+            - bing \n \
+            - boing \n \
+            i dont know how to do markdown \n \
+            but thats fine",
+        },
+        {
+            id: "3",
+            date: 1706261080713,
+            text: "# Longererererer title! \n \
+            this is in markdown \n \
+            i dont know how to do markdown \n \
+            i dont know how to do markdown \n \
+            i dont know how to do markdown \n \
+            i dont know how to do markdown \n \
+            i dont know how to do markdown \n \
+            i dont know how to do markdown \n \
+            i dont know how to do markdown \n \
+            i dont know how to do markdown \n \
+            but thats fine",
         },
     ];
 
@@ -22,10 +58,12 @@
     function processItems() {
         items = items.sort((a, b) => b.date - a.date);
 
+        const pixelsPerDay = 20
+
         let previousDate = now;
         for (let i = 0; i < items.length; i++) {
             const thisDate = items[i].date;
-            items[i].diff = (previousDate - thisDate) / 500000;
+            items[i].diff = (previousDate - thisDate) / 86400000 * pixelsPerDay;
             previousDate = thisDate;
         }
     }
@@ -34,67 +72,83 @@
     let blogItem = params.id;
     // TODO scroll to blogitem
 
-
     let test = new Date(now);
     console.log(test);
 </script>
 
 
-<div id="timeline">
-    <a class="date" href={"/blog"} on:click={() => {blogItem = undefined}} style={"margin-top: 100px;"}>
+<div id="grid">
+    <a class="date" href={"/blog"} on:click={() => {blogItem = undefined}}>
         {format.dateShort(now)}
     </a>
-    {#each items as item}
-        <div class="blogItem" style={"margin-top: " + item.diff + "px;"}>
-            <a class="date" href={"/blog/" + item.id} on:click={() => {blogItem = item.id}}>
-                {format.dateShort(item.date)}
-            </a>
-            <a class="text" href={"/blog/" + item.id} on:click={() => {blogItem = item.id}}>
-                <BlogItem focussed={blogItem === item.id} text={item.text}></BlogItem>
-            </a>
-        </div>
+
+    {#each items as item, i (i)}
+        <div class="timeline" style="height: {item.diff}px"></div>
+
+        <a class="date" href={"/blog/" + item.id} on:click={() => {blogItem = item.id}}
+           style={"grid-row-start: " + (2 * i + 3)}>
+            {format.dateShort(item.date)}
+        </a>
+
+
+        <a class="text {(i % 2 === 0) ? 'left' : 'right'}" href={"/blog/" + item.id} on:click={() => {blogItem = item.id}}
+           style="--height: {i}">
+            <!--           style={"grid-row-start: " + (i + 2) + ";grid-row-end: " + (i + 4)}>-->
+            <BlogItem focussed={blogItem === item.id} text={item.text}></BlogItem>
+        </a>
+
     {/each}
 </div>
 
-
 <style>
+    #grid {
+        display: grid;
+        grid-template-columns: calc((100% - (2.4rem + 2px)) / 2) calc(2.4rem + 2px) calc((100% - (2.4rem + 2px)) / 2);
+        /*grid-template-rows: minmax(100px, auto) minmax(50px, auto);*/
+    }
+
     a {
         text-decoration: none;
         color: black;
     }
 
-    #timeline {
-        position: absolute;
-        left: 50%;
-
-        transform: translateX(50%);
-
-        height: 100%;
-        width: 0;
-        border: thick solid black;
-    }
-
     .date {
-        position: absolute;
-        transform: translate(-50%, -150%);
-        display: block;
+        grid-column-start: 2;
+
         text-align: center;
-        border: thick solid blue;
+        border: 2px solid white;
         border-radius: 50%;
 
-        width: 2rem;
-        height: 2rem;
+        width: 2.4rem;
+        height: 2.4rem;
 
-        background-color: white;
+        background-color: lightgray;
     }
 
     .text {
+        grid-row-start: calc(2 * var(--height) + 3);
+        /*TODO there has to be a neater way than this*/
+        grid-row-end: 9999999999999999;
+
+        overflow: clip;
+    }
+
+    .text.left {
+        grid-column-start: 1;
+    }
+    .text.right {
+        grid-column-start: 3;
+    }
+
+    .timeline {
+        background-color: black;
+        grid-column-start: 2;
+        grid-column-end: 2;
+        height: 100px;
+        width: 2px;
         position: relative;
-        top: -72px;
-        left: 20px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
-    .blogItem {
-
-    }
 </style>

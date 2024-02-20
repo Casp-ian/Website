@@ -10,7 +10,7 @@
 </script>
 
 
-<p>conway conway pvp gamified webassembly</p>
+<p>conway conway pvp webassembly</p>
 
 {#if !gameOfLife}
     <p>web assembly loading...</p>

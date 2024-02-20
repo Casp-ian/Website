@@ -1,4 +1,6 @@
 <script>
+    import { marked } from 'marked'
+
     export let text = "No text...";
     export let focussed = false;
 
@@ -9,28 +11,28 @@
 
 
 <div id="blogItem">
-    <div id="pointer">
-        {"<"}
-    </div>
-
-    <div id="text">
-        {#if focussed}
-            <p>{text}</p>
-        {:else}
-            <p>{truncate(text, 4)}</p>
-        {/if}
+    <hr>
+    <div id="text" class={focussed ? "" : "shrunk"}>
+        {@html marked(text)}
     </div>
 </div>
 
 
 <style>
     #blogItem {
-        display: flex;
-        align-items: center;
+    }
+
+    #pointer {
+        margin-top: 18px;
     }
 
     #text {
-        border: black solid;
-        border-radius: 10px;
+        overflow: clip;
+        margin-right: 3rem;
+        margin-left: 3rem;
+    }
+
+    .shrunk {
+        height: 100px;
     }
 </style>
