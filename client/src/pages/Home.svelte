@@ -1,5 +1,6 @@
 <script>
     import WelcomeScreen from "../components/WelcomeScreen.svelte";
+    import Footer from "../components/Footer.svelte";
 
     export let params;
 </script>
@@ -23,6 +24,8 @@
         I am planning to show of my fun projects here and hopefully market myself as a good software engineer.
     </p>
 </div>
+
+<Footer></Footer>
 
 
 <style>
