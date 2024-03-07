@@ -25,3 +25,16 @@
 </div>
 
 <svelte:component this={project} />
+
+
+<style>
+    #projectHeader {
+        background-color: lightgray;
+        border-bottom: black 1px solid;
+        height: 2rem;
+    }
+
+    #projectHeader>a {
+        padding: 1rem;
+    }
+</style>

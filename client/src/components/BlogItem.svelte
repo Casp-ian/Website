@@ -20,14 +20,11 @@
 
 <style>
     #blogItem {
-    }
-
-    #pointer {
-        margin-top: 18px;
+        height: 200px;
     }
 
     #text {
-        overflow: clip;
+        overflow: hidden;
         margin-right: 3rem;
         margin-left: 3rem;
     }

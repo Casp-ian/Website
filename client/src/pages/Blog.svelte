@@ -71,40 +71,47 @@
 
     let blogItem = params.id;
     // TODO scroll to blogitem
-
-    let test = new Date(now);
-    console.log(test);
 </script>
 
 
-<div id="grid">
+<div id={(blogItem === undefined) ? "grid" : ((blogItem % 2 !== 0) ? "gridLeft" : "gridRight")}>
+
+<!--    current date-->
     <a class="date" href={"/blog"} on:click={() => {blogItem = undefined}}>
         {format.dateShort(now)}
     </a>
 
     {#each items as item, i (i)}
-        <div class="timeline" style="height: {item.diff}px"></div>
+        <div class="timeline" style="--diff: {item.diff}px"></div>
 
         <a class="date" href={"/blog/" + item.id} on:click={() => {blogItem = item.id}}
            style={"grid-row-start: " + (2 * i + 3)}>
             {format.dateShort(item.date)}
         </a>
 
-
         <a class="text {(i % 2 === 0) ? 'left' : 'right'}" href={"/blog/" + item.id} on:click={() => {blogItem = item.id}}
            style="--height: {i}">
-            <!--           style={"grid-row-start: " + (i + 2) + ";grid-row-end: " + (i + 4)}>-->
             <BlogItem focussed={blogItem === item.id} text={item.text}></BlogItem>
         </a>
-
     {/each}
 </div>
 
+
 <style>
     #grid {
+        margin-top: 2rem;
         display: grid;
         grid-template-columns: calc((100% - (2.4rem + 2px)) / 2) calc(2.4rem + 2px) calc((100% - (2.4rem + 2px)) / 2);
-        /*grid-template-rows: minmax(100px, auto) minmax(50px, auto);*/
+    }
+    #gridLeft {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: calc((100% - (4.8rem + 4px))) calc(2.4rem + 2px) calc(2.4rem + 2px);
+    }
+    #gridRight {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: calc(2.4rem + 2px)calc(2.4rem + 2px) calc((100% - (4.8rem + 4px)));
     }
 
     a {
@@ -144,11 +151,12 @@
         background-color: black;
         grid-column-start: 2;
         grid-column-end: 2;
-        height: 100px;
         width: 2px;
         position: relative;
         left: 50%;
         transform: translateX(-50%);
+
+        height: var(--diff);
     }
 
 </style>

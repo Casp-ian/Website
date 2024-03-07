@@ -7,7 +7,6 @@
     import Error from "./pages/Error.svelte";
 
     import Header from "./components/Header.svelte";
-    import Footer from "./components/Footer.svelte";
 
     let page;
     let params;
@@ -63,6 +62,7 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
         Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
+
     main {
         height: 100vh;
     }
