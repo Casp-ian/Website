@@ -1,10 +1,11 @@
 <script>
     export let url;
-    export let img;
+    export let img = "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=" + url + "&size=24";
 </script>
 
+
 <a href={url}>
-    <img src={img} alt="" height="24"/>
+    <img src={img} alt=""/>
     <p>
         <slot></slot>
     </p>
