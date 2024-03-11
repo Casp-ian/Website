@@ -32,9 +32,16 @@
         background-color: lightgray;
         border-bottom: black 1px solid;
         height: 2rem;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     #projectHeader>a {
-        padding: 1rem;
+        margin-left: .1rem;
+        padding: .5rem;
+        background-color: wheat;
     }
 </style>
