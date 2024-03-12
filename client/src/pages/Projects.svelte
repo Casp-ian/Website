@@ -1,12 +1,14 @@
 <script>
     import ThisWebsite from "../projects/ThisWebsite.svelte";
     import Conways from "../projects/Conways.svelte";
+    import Orbit from "../projects/Orbit.svelte";
 
     export let params;
 
     const projects = {
         "this": ThisWebsite,
         "conway": Conways,
+        "orbiting balls": Orbit,
     }
 
     let project = projects[params.id];

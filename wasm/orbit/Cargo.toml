@@ -1,0 +1,15 @@
+[package]
+name = "orbit"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# needed for target wasm type
+[lib]
+crate-type = ["cdylib"]
+
+# deps
+[dependencies]
+js-sys = "0.3.69"
+wasm-bindgen = "0.2.63"

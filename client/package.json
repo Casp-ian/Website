@@ -8,7 +8,9 @@
     "build": "npm run wasm && vite build",
     "preview": "vite preview",
     "start": "npm run build && npm run preview",
-    "wasm": "wasm-pack build ../wasm/conway --target web"
+    "wasm": "npm run wasm-orbit && npm run wasm-conway",
+    "wasm-conway": "wasm-pack build ../wasm/conway --target web",
+    "wasm-orbit": "wasm-pack build ../wasm/orbit --target web"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.5",
@@ -16,6 +18,7 @@
     "vite": "^4.4.9"
   },
   "dependencies": {
+    "highlight.js": "^11.9.0",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "marked": "^12.0.0",

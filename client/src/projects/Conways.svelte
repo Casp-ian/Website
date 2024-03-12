@@ -24,6 +24,7 @@
 
 <p>conway conway pvp webassembly</p>
 <PrettyLink url="https://rustwasm.github.io/docs/book/game-of-life/implementing.html">mostly learned from this great tutorial</PrettyLink>
+<p>i still plan to expand this before making this portfolio public</p>
 
 {#if !universe}
     <p>web assembly loading...</p>
