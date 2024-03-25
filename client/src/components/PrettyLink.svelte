@@ -4,11 +4,11 @@
 </script>
 
 
-<a href={url}>
+<a href={url} target="_blank">
     <img src={img} alt=""/>
-    <p>
+    <b>
         <slot></slot>
-    </p>
+    </b>
 </a>
 
 
@@ -17,8 +17,6 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        text-decoration: none;
-        color: dimgray;
-        gap: 2px
+        gap: 2px;
     }
 </style>

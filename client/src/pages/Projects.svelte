@@ -14,7 +14,6 @@
     let project = projects[params.id];
 
     if (!project) {
-        // maybe just make this the latest project?
         project = projects["this"]
     }
 </script>
