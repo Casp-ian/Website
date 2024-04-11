@@ -5,7 +5,7 @@
     export let backgroundImageUrl;
     backgroundImageUrl = 'url(' + backgroundImageUrl + ')'
 
-    export let headerHeight = 0;
+    export let headerHeight = "0px";
 
     let scroll;
 </script>

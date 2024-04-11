@@ -1,7 +1,7 @@
 use wasm_bindgen::prelude::*;
 use js_sys::Float64Array;
 
-const GRAVITY: f64 = 0.5;
+const GRAVITY: f64 = 0.1;
 
 #[wasm_bindgen]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -31,35 +31,21 @@ impl Universe {
 
         let mut corrections: Vec<Correction> = Vec::new();
 
-
         for (index, ball) in self.balls.iter().enumerate() {
             for (other_index, other_ball) in self.balls.iter().enumerate() {
+                let x = ball.x - other_ball.x;
+                let y = ball.y - other_ball.y;
 
-                if index == other_index {
-                    continue;
+                let mut diff_x = 0.;
+                let mut diff_y = 0.;
+
+                if (x.abs() < ball.radius && y.abs() < ball.radius) {
+                    diff_x = x / 2.;
+                    diff_y = y / 2.;
                 }
 
-                let distance = ((ball.x - other_ball.x).powf(2.) + (ball.y - other_ball.y).powf(2.)).sqrt();
-                let radii = ball.radius + other_ball.radius;
-
-                if distance < radii {
-
-                    let diff = (radii - distance) / 2.;
-
-                    let ball_x = (ball.x - other_ball.x).clamp(-diff, diff);
-                    let ball_y = (ball.y - other_ball.y).clamp(-diff, diff);
-                    let other_x = (other_ball.x - ball.x).clamp(-diff, diff);
-                    let other_y = (other_ball.y - ball.y).clamp(-diff, diff);
-
-                    // let ball_x = (ball.x - other_ball.x);
-                    // let ball_y = (ball.y - other_ball.y);
-                    // let other_x = (other_ball.x - ball.x);
-                    // let other_y = (other_ball.y - ball.y);
-
-                    corrections.push(Correction {ball_index: index, x: ball_x, y: ball_y});
-                    corrections.push(Correction {ball_index: other_index, x: other_x, y: other_y});
+                corrections.push(Correction {ball_index: index, x: diff_x, y: diff_y});
                 }
-            }
         }
         
         for (index, ball) in self.balls.iter_mut().enumerate() {
@@ -95,13 +81,15 @@ impl Universe {
 #[wasm_bindgen]
 impl Universe {
     pub fn tick(&mut self) {
-        self.solve();
         self.gravity();
         self.apply();
+        self.solve();
     }
 
     pub fn step(&mut self, miliseconds: u32) {
-
+        for i in 0..=miliseconds {
+            self.tick();
+        }
     }
 
     pub fn new() -> Universe {
@@ -112,8 +100,11 @@ impl Universe {
             width,
             height,
             balls: vec![
-                Ball {radius: 50., x: 100., y: 100., vel_x: 0., vel_y: 0.},
-                Ball {radius: 50., x: 150., y: -100., vel_x: -20., vel_y: 0.},
+                Ball {radius: 50., x: 30., y: 30., vel_x: 0., vel_y: 0.},
+                Ball {radius: 40., x: -40., y: -20., vel_x: -0., vel_y: 0.},
+                Ball {radius: 30., x: 40., y: 0., vel_x: -0., vel_y: 0.},
+                Ball {radius: 20., x: 30., y: -30., vel_x: -0., vel_y: 0.},
+                Ball {radius: 10., x: 20., y: 30., vel_x: -0., vel_y: 0.},
             ],
         }
     }

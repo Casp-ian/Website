@@ -1,10 +1,13 @@
 <script>
     import WelcomeScreen from "../components/WelcomeScreen.svelte";
     import Footer from "../components/Footer.svelte";
+    import Cat from "../components/Cat.svelte";
 
     export let params;
 </script>
 
+
+<Cat/>
 
 <!--welcome screen or something?-->
 <WelcomeScreen
