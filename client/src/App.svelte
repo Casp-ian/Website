@@ -58,12 +58,34 @@
 
 
 <style>
+    :global(*) {
+        --main-color: #171918;
+        --back-color: #d8dcda;
+        --interactable-color: #de494c;
+        --accent-color: #4a3f63;
+		    transition: background-color 0.2s;
+    }
+    :global(body.dark *) {
+        --main-color: #d8dcda;
+        --back-color: #171918;
+        --interactable-color: #de494c;
+        --accent-color: #4a3f63;
+    }
+
     :root {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
         Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
     main {
-        height: 100vh;
+        position: absolute;
+        top: 0;
+        min-height: 100vh;
+        width: 100vw;
+        background-color: var(--accent-color);
+    }
+
+    :global(p, h1, h2, h3, a, button) {
+        color: var(--main-color);
     }
 </style>

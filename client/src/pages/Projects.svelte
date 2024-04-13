@@ -2,13 +2,15 @@
     import ThisWebsite from "../projects/ThisWebsite.svelte";
     import Conways from "../projects/Conways.svelte";
     import Orbit from "../projects/Orbit.svelte";
+    import TaggedFiles from "../projects/TaggedFiles.svelte";
 
     export let params;
 
     const projects = {
         "this": ThisWebsite,
-        "conway": Conways,
-        "orbiting balls": Orbit,
+        // "conway": Conways,
+        // "orbiting balls": Orbit,
+        "tagged files": TaggedFiles,
     }
 
     let project = projects[params.id];
@@ -30,19 +32,22 @@
 
 <style>
     #projectHeader {
-        background-color: lightgray;
-        border-bottom: black 1px solid;
-        height: 2rem;
-
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
+
+        padding-left: 2rem;
     }
 
     #projectHeader>a {
+        background-color: var(--back-color);
         margin-left: .1rem;
         padding: .5rem;
-        background-color: wheat;
+
+        text-decoration: none;
+
+        margin: .3rem;
+        border-radius: .3rem;
     }
 </style>

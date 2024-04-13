@@ -9,18 +9,22 @@
         <li><h1>Website</h1></li>
         <li><a class:active={active === "/"} href="/">Home</a></li>
         <li><a class:active={active === "/projects"} href="/projects">Projects</a></li>
-        <li><a class:active={active === "/blog"} href="/blog">Blog</a></li>
+        <!-- <li><a class:active={active === "/blog"} href="/blog">Blog</a></li> -->
     </ul>
+    <button on:click={() => window.document.body.classList.toggle('dark')}>
+        totally finished darkmod button
+    </button>
 </nav>
 
 
 <style>
     nav {
-        height: calc(4rem - 1px); /*1px is border*/
-        border-bottom: 1px solid black;
-
+        height: 4rem;
+    
         text-align: center;
-        margin: 0;
+        background-color: var(--back-color);
+        margin: .3rem;
+        border-radius: .3rem;
     }
 
     ul, li {
@@ -35,10 +39,14 @@
 
     a {
         text-decoration: none;
-        color: black;
     }
 
     a.active {
         font-weight: bold;
+    }
+
+    button {
+        float: right;
+        background-color: var(--interactable-color);
     }
 </style>
