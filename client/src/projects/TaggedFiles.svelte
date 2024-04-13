@@ -4,14 +4,10 @@
 
 
 <div id="wrapper">
-  <h1>
-    Tagged Files
-  </h1>
-  
-  <p>
-    hekkkiigrnfhtrfh
-  </p>
-  <PrettyLink url="https://github.com/Casp-ian/TaggedFiles">link</PrettyLink>
+  <h1>Tagged Files</h1>
+  <p>I dont really feel like rewriting the readme so you can read it on github.</p>
+  <p>Maybe when i rewrite it i will post what i learned here.</p>
+  <PrettyLink url="https://github.com/Casp-ian/TaggedFiles">source code here.</PrettyLink>
 </div>
 
 

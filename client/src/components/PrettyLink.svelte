@@ -18,5 +18,6 @@
         flex-direction: row;
         align-items: center;
         gap: 2px;
+        width: max-content;
     }
 </style>
