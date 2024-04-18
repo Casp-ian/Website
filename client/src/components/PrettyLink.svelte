@@ -5,7 +5,7 @@
 
 
 <a href={url} target="_blank">
-    <img src={img} alt=""/>
+    <img src={img} width={24} alt=""/>
     <b>
         <slot></slot>
     </b>

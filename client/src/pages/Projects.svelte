@@ -1,13 +1,15 @@
 <script>
     import ThisWebsite from "../projects/ThisWebsite.svelte";
-    import Conways from "../projects/Conways.svelte";
-    import Orbit from "../projects/Orbit.svelte";
+    import Cat from "../projects/Cat.svelte";
+    // import Conways from "../projects/Conways.svelte";
+    // import Orbit from "../projects/Orbit.svelte";
     import TaggedFiles from "../projects/TaggedFiles.svelte";
 
     export let params;
 
     const projects = {
         "this": ThisWebsite,
+        "cat": Cat,
         // "conway": Conways,
         // "orbiting balls": Orbit,
         "tagged files": TaggedFiles,
