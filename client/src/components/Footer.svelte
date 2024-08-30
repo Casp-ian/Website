@@ -2,8 +2,8 @@
     import PrettyLink from "./PrettyLink.svelte";
 </script>
 
-<hr>
 <div id="links">
+    <hr>
     <PrettyLink url="https://github.com/Casp-ian">
         github
     </PrettyLink>
@@ -13,10 +13,17 @@
 </div>
 
 <style>
+    hr {
+        width: 100%;    
+    }
+    
     #links {
+        position: absolute;
+        bottom: 0;
+        
+        padding: 1rem;
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
         justify-content: space-evenly;
     }
 </style>

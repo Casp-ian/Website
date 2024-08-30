@@ -21,8 +21,6 @@
         display: flex;
         flex-direction: column;
 
-        background: var(--back-color);
-
         margin: .3rem;
         border-radius: .3rem;
     }

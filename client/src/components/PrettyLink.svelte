@@ -5,7 +5,9 @@
 
 
 <a href={url} target="_blank">
-    <img src={img} width={24} alt=""/>
+    {#if (img !== null)}
+        <img src={img} width={24} alt=""/>
+    {/if}
     <b>
         <slot></slot>
     </b>
@@ -14,7 +16,7 @@
 
 <style>
     a {
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
         align-items: center;
         gap: 2px;

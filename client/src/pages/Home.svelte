@@ -1,16 +1,11 @@
 <script>
     import WelcomeScreen from "../components/WelcomeScreen.svelte";
-    import Footer from "../components/Footer.svelte";
 
     export let params;
 </script>
 
 <!--welcome screen or something?-->
-<WelcomeScreen>
-    <h1>
-        WELCOME
-    </h1>
-</WelcomeScreen>
+<!-- <WelcomeScreen/> -->
 
 <div id="text">
     <h1>HELLOOOOOOOOOOO</h1>
@@ -21,14 +16,11 @@
     </p>
 </div>
 
-<Footer></Footer>
-
 
 <style>
     #text {
         padding: 1rem 2rem 1rem 2rem;
         margin: .3rem;
         border-radius: .3rem;
-        background-color: var(--back-color);
     }
 </style>

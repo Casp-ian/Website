@@ -1,52 +1,53 @@
 <script>
     export let active;
+    const mainPaths = {
+        "home": "/home",
+        "projects": "/projects",
+    }
+    
+    const projects = {
+        "this": "/projects/this",
+        "cat": "/projects/cat",
+        // "conway": "/projects/conway",
+        // "orbiting balls": "/projects/orbiting_balls",
+        "tagged files": "/projects/tagged_files",
+        "image to text": "/projects/image_to_text"
+    }
 </script>
 
 
 <!--header component is not reusable right now, but maybe its not always worth the time to make a component reusable that only gets used once per project-->
 <nav>
-    <ul>
-        <li><h1>Website</h1></li>
-        <li><a class:active={active === "/"} href="/">Home</a></li>
-        <li><a class:active={active === "/projects"} href="/projects">Projects</a></li>
-        <!-- <li><a class:active={active === "/blog"} href="/blog">Blog</a></li> -->
-    </ul>
-    <button on:click={() => window.document.body.classList.toggle('dark')}>
-        totally finished darkmod button
-    </button>
+    {#each Object.entries(mainPaths) as [name, component]}
+        <a href={component} class:active={active.startsWith(component)}>{name}</a>
+    {/each}
 </nav>
+
+{#if active.startsWith("/projects")}
+<nav>
+    {#each Object.entries(projects) as [name, component]}
+        <a href={component} class:active={active === component}>{name}</a>
+    {/each}
+</nav>
+{/if}
 
 
 <style>
     nav {
-        height: 4rem;
+        display: flex;
+        flex-direction: row;
     
-        text-align: center;
-        background-color: var(--back-color);
-        margin: .3rem;
         border-radius: .3rem;
-    }
 
-    ul, li {
-        display: inline-block;
-        list-style-type: none;
-        padding: 0 1em;
-    }
-
-    h1 {
-        margin: 0;
+        width: 100%;
     }
 
     a {
+        padding: .2rem;
         text-decoration: none;
     }
 
     a.active {
         font-weight: bold;
-    }
-
-    button {
-        float: right;
-        background-color: var(--interactable-color);
     }
 </style>

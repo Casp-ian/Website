@@ -4,7 +4,7 @@
   export let startX = 0;
   export let startY = 0;
   
-  // -99-: stunned, -1: running, 0: sitting, 9: sleeping, 10-99: petting,
+  // -99-: stunned, -1: running, 0-9: sitting, 10-19: idle, 20-29: petting, 30-39: sleeping,
   let catState = -1;
   let runDirection = 0;
   // run direction laid out like
@@ -24,7 +24,7 @@
     // cat movement logic
     let diff = {x: mouse.x - cat.x, y: mouse.y - cat.y};
     const distance = Math.sqrt(diff.x * diff.x+ diff.y * diff.y);
-    let speed = even ? 8 : 6; //differ speed to make movement more "natural"
+    let speed = even ? 13 : 12; //differ speed to make movement more "natural"
     let unit = {x: diff.x / distance, y: diff.y / distance};
 
     setRunDirection(unit);
@@ -53,17 +53,27 @@
     }
 
     // sitting
-    if (catState == 0) {
+    if (0 <= catState && catState < 10) {
       // check if should run
       if (distance > 50) {
-        catState = -9;
+        catState = -5;
         return;
       }
       
-      // petting logic
-      checkIfPet();
-      imageOffset = {x: 0, y: 0};
+      if (checkIfPet()) {
+        catState = 20;
+      }
       
+      return;
+    }
+
+    // petting
+    if (20 <= catState && catState < 30) {
+      catState++;
+      if (catState == 30) {
+        catState = 0;
+      }
+
       return;
     }
 
@@ -74,14 +84,15 @@
   function animate() {
     even = !even;
     
+    let y = even ? 0 : -32;
+
     // stunning
     if (catState < -1) {
-      imageOffset = {x: -288, y: 0};
+      imageOffset = {x: -288, y};
     }
 
     // running
     if (catState == -1) {
-      let y = even ? 0 : -32;
       switch (runDirection) {
         case 0:
           imageOffset = {x: -32, y};  
@@ -112,9 +123,12 @@
 
     // sitting
     if (catState == 0) {
-      // petting logic
-      checkIfPet();
-      imageOffset = {x: 0, y: 0};
+      imageOffset = {x: 0, y: -32};
+    }
+
+    // petting
+    if (20 <= catState && catState < 30) {
+      imageOffset = {x: -352, y};
     }
   }
 
@@ -161,10 +175,12 @@
   }
 
   function checkIfPet() {
-    if (mouseMoveCount > 100) {
+    if (mouseMoveCount > 30) {
       mouseMoveCount = 0;
       console.log("meow");
+      return true;
     }
+    return false;
   }
 
   function updateMouse(event) {
@@ -175,8 +191,8 @@
   }
 
   onMount(async () => {
-    setInterval(update, 50);
-    setInterval(animate, 150);
+    setInterval(update, 110);
+    setInterval(animate, 110);
     document.onmousemove = updateMouse;
   })
 
@@ -192,7 +208,7 @@
     position: absolute;
     width: 32px;
     height: 32px;
-    background-image: url("../assets/oneko.png");
+    background-image: url("../assets/oneko2.png");
     image-rendering: pixelated;
     transform: translate(-50%, -50%);
   }
