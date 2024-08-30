@@ -15,9 +15,9 @@
 
     let page;
     let params;
-    let currentRoute;
+    let currentRoute = '';
 
-    router('', (ctx) => {
+    router('/', (ctx) => {
         params = ctx.params;
         page = Home;
         currentRoute = '/home';
@@ -77,6 +77,8 @@
         params = ctx.params;
         page = Error;
         params.errorCode = 404;
+        params.message = 'That page does not exist';
+        currentRoute = '/error';
     });
     router.start();
 </script>

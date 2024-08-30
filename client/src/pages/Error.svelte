@@ -1,17 +1,25 @@
 <script>
     export let params;
+    // should contain errorCode and message
 </script>
 
+<div id="wrapper">
+    <h1>Something went wrong</h1>
+    {#if params.message}
+        <p>{params.message}</p>
+    {/if}
+    
+    <!--there might be a neater way to write this, but i dont know how :P-->
+    {#if !params.message}
+        <p>we dont know what went wrong :(</p>
+    {/if}
 
-<h1>Something went wrong</h1>
-{#if params.errorCode}
-    <p>error code: {params.errorCode}</p>
-{/if}
-{#if params.message}
-    <p>{params.message}</p>
-{/if}
+    <a href="/home">go back</a>
+</div>
 
-<!--there might be a neater way to write this, but i dont know how :P-->
-{#if !params.message && !params.errorCode}
-    <p>we dont know what went wrong :(</p>
-{/if}
+
+<style>
+    #wrapper {
+        margin: 2rem 5rem 2rem 5rem;
+    }
+</style>
