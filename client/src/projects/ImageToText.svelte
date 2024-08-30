@@ -2,6 +2,7 @@
     import PrettyLink from "../components/PrettyLink.svelte";
     import BuffFrog from "../assets/buff_frog_ImageToText_example.png";
     import Acerola from "../assets/acerola_ImageToText_example.png";
+    import PrettyImage from "../components/PrettyImage.svelte";
 </script>
 
 
@@ -123,7 +124,7 @@
 
     <p> And i added colors! (with rgb ansi color codes) </p>
 
-    <img src={BuffFrog} alt="buff frog image example"/>
+    <PrettyImage src={BuffFrog} alt="buff frog image example"/>
 
 </div>
 

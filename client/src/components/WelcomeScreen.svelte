@@ -2,6 +2,9 @@
 
     let screens = ["plain"];
     let screen = screens[Math.floor(Math.random()*screens.length)];
+
+    // change this to another image every day, or every reload.
+    // if you change this every day it motivates users to check the page the next day, reserving a little space in their head rent free :)
 </script>
 
 

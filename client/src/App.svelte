@@ -102,11 +102,19 @@
 
 <style>
     :global(*) {
-        --main-color: #101816;
-        --back-color: #EDCB96;
-        --interactable-color: #295F98;
-        --accent-color: #667BC6;
+        --main-color: #F7FFF7;
+        --back-color: #240021;
+        --interactable-color: #ED455C;
+        --accent-color: #8338EC;
 		    transition: background-color 0.2s;
+    }
+
+    :global(p, h1, h2, h3, button, pre) {
+        color: var(--main-color);
+    }
+
+    :global(a) {
+        color: var(--interactable-color);
     }
 
     :root {
@@ -131,15 +139,11 @@
     }
 
     #page {
-        box-shadow: 0 0 2rem var(--main-color);
+        box-shadow: 0 0 .5rem var(--accent-color);
         width: 50vw;
     }
 
     #extra {
         width: 25vw;
-    }
-
-    :global(p, h1, h2, h3, a, button) {
-        color: var(--main-color);
     }
 </style>
