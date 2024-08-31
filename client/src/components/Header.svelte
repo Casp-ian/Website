@@ -11,7 +11,8 @@
         // "conway": "/projects/conway",
         // "orbiting balls": "/projects/orbiting_balls",
         "tagged files": "/projects/tagged_files",
-        "image to text": "/projects/image_to_text"
+        "image to text": "/projects/image_to_text",
+        // "tanks": "/projects/tanks",
     }
 </script>
 
@@ -25,6 +26,8 @@
     
     {#if active.startsWith("/projects")}
     <nav id="projects">
+        <!-- TODO make nice icon, also, not sure if this 'back arrow' looks good -->
+        <a href="/home">&lt=</a>
         {#each Object.entries(projects) as [name, component]}
             <a href={component} class:active={active === component}>{name}</a>
         {/each}
@@ -51,6 +54,7 @@
     }
 
     a {
+        text-align: right;
         padding: .2rem;
         text-decoration: none;
     }
