@@ -14,7 +14,8 @@
 
 <style>
     hr {
-        width: 100%;    
+        color: var(--back-color2);
+        width: 100%;
     }
     
     #links {

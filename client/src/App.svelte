@@ -1,17 +1,21 @@
 <script>
     import router from 'page';
 
+    // side bar things
+    import Sidebar from './components/Sidebar.svelte';
+    import Notifications from './components/Notifications.svelte';
+
+    // pages
     import Home from "./pages/Home.svelte";
     import Blog from "./pages/Blog.svelte";
     import Error from "./pages/Error.svelte";
 
-    import Header from "./components/Header.svelte";
-    import Footer from "./components/Footer.svelte";
-    import Notifications from './components/Notifications.svelte';
+    // projects
     import ThisWebsite from './projects/ThisWebsite.svelte';
     import Cat from './projects/Cat.svelte';
     import TaggedFiles from './projects/TaggedFiles.svelte';
     import ImageToText from './projects/ImageToText.svelte';
+
 
     let page;
     let params;
@@ -86,8 +90,7 @@
 
 <main>
     <div id="sidebar">
-        <Header active={currentRoute}/>
-        <Footer/>
+        <Sidebar active={currentRoute}/>
     </div>
     
     <div id="page">
@@ -104,6 +107,7 @@
     :global(*) {
         --main-color: #F7FFF7;
         --back-color: #240021;
+        --back-color2: #3D003A;
         --interactable-color: #ED455C;
         --accent-color: #8338EC;
 		    transition: background-color 0.2s;
@@ -139,7 +143,7 @@
     }
 
     #page {
-        box-shadow: 0 0 .5rem var(--accent-color);
+        box-shadow: 0 0 .5rem var(--back-color2);
         width: 50vw;
     }
 

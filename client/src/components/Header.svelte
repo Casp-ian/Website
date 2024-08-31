@@ -16,27 +16,35 @@
 </script>
 
 
-<!--header component is not reusable right now, but maybe its not always worth the time to make a component reusable that only gets used once per project-->
-<nav>
-    {#each Object.entries(mainPaths) as [name, component]}
-        <a href={component} class:active={active.startsWith(component)}>{name}</a>
-    {/each}
-</nav>
-
-{#if active.startsWith("/projects")}
-<nav>
-    {#each Object.entries(projects) as [name, component]}
-        <a href={component} class:active={active === component}>{name}</a>
-    {/each}
-</nav>
-{/if}
+<div id="wrapper">
+    <nav id="main">
+        {#each Object.entries(mainPaths) as [name, component]}
+            <a href={component} class:active={active.startsWith(component)}>{name}</a>
+        {/each}
+    </nav>
+    
+    {#if active.startsWith("/projects")}
+    <nav id="projects">
+        {#each Object.entries(projects) as [name, component]}
+            <a href={component} class:active={active === component}>{name}</a>
+        {/each}
+    </nav>
+    {/if}
+</div>
 
 
 <style>
-    nav {
+    #wrapper {
         display: flex;
         flex-direction: row;
+            
+        padding: 1rem;
+    }
     
+    nav {
+        display: flex;
+        flex-direction: column;
+
         border-radius: .3rem;
 
         width: 100%;
@@ -48,6 +56,6 @@
     }
 
     a.active {
-        font-weight: bold;
+        text-decoration: underline;
     }
 </style>
