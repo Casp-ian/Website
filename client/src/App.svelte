@@ -36,7 +36,8 @@
     router('/projects', (ctx) => {
         params = ctx.params;
         page = ThisWebsite;
-        currentRoute = '/projects';
+        // this isnt really correct, but is the easiest way to make sure the correct thing gets underlined in the nav section
+        currentRoute = '/projects/this';
     });
     router('/projects/this', (ctx) => {
         params = ctx.params;

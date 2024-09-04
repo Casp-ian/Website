@@ -2,18 +2,23 @@
     import hljs from 'highlight.js/lib/core';
     import javascript from 'highlight.js/lib/languages/javascript';
     import rust from 'highlight.js/lib/languages/rust';
-    hljs.registerLanguage('javascript', javascript);
-    hljs.registerLanguage('rust', rust);
+    import xml from 'highlight.js/lib/languages/xml';
 
+    hljs.registerLanguage('javascript', javascript);    
+    hljs.registerLanguage('rust', rust);    
+    hljs.registerLanguage('xml', xml);    
+    
     import { onMount } from "svelte";
-
+    
     onMount(async () => {
-        document.getElementById("code").innerHTML = hljs.highlight(text, {language: language}).value;
+        codeElement.innerHTML = hljs.highlight(text, {language: language}).value;
+        // hljs.hightlightAll();
     })
 
+    export let text;
     export let language;
 
-    export let text;
+    let codeElement;
 
     let copyText = "⎘";
     
@@ -26,34 +31,32 @@
 </script>
 
 <div id="wrapper">
-    <pre id="code"/>
-    <div id="copy">
-        <button on:click={copy}> 
+    <div id="copy"  on:click={copy}>
             {copyText}
-        </button>
     </div>
+    <pre bind:this={codeElement} id="code" />
 </div>
 
 
 <style>
     @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.min.css");
     #wrapper {
-        padding: 10px;
         background-color: black;
-        display: flex;
-        width: max-content;
+        width: 100%;
         flex-direction: row;
-        
     }
 
     #copy {
-        padding: 5px;
-        margin-left: 20px;
+        color: white;
+        cursor: pointer;
+        float: right;
         width: 1rem;
         height: 1rem;
     }
     
     #code {
+        width: 100%;
+        padding: 1rem;
         color: white;
     }
 </style>

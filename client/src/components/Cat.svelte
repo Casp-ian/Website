@@ -175,7 +175,7 @@
   }
 
   function checkIfPet() {
-    if (mouseMoveCount > 30) {
+    if (mouseMoveCount > 50) {
       mouseMoveCount = 0;
       console.log("meow");
       return true;
