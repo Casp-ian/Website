@@ -1,30 +1,27 @@
 <script>
+    import DvdBlock from '../components/dvdBlock.svelte';
+    import WeatherMenu from '../components/WeatherMenu.svelte';
+    import Chat from '../components/Chat.svelte';
 
-    let screens = ["plain"];
-    let screen = screens[Math.floor(Math.random()*screens.length)];
-
-    // change this to another image every day, or every reload.
+    let screens = [
+        DvdBlock, 
+        // WeatherMenu,  // TODO fix these / make these presentable
+        // Chat, // TODO fix these / make these presentable
+    ];
     // if you change this every day it motivates users to check the page the next day, reserving a little space in their head rent free :)
+    let screen = screens[new Date().getDay() % screens.length];
+
 </script>
 
-
-<div id="welcome">
-    {#if screen = "plain"}
-        <p>hello :)</p>
-        <p>this panel is meant to contain a nice eye grabbing thing, but it isnt finished yet</p>
-    {/if}
+<!-- small little interesting thing on the homescreen -->
+<div>
+    <svelte:component this={screen}/>
 </div>
 
 
 <style>
-    #welcome {
-        height: 90vh;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-
-        margin: .3rem;
-        border-radius: .3rem;
+    div {
+        height: 60vh;
+        background-color: var(--accent-color)
     }
 </style>

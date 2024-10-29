@@ -1,9 +1,12 @@
 <script>
     import router from 'page';
 
+    import { isVertical } from './lib/isMobile'
+
     // side bar things
     import Sidebar from './components/Sidebar.svelte';
     import Notifications from './components/Notifications.svelte';
+    import Weather from './components/Weather.svelte';
 
     // pages
     import Home from "./pages/Home.svelte";
@@ -90,6 +93,11 @@
 
 
 <main>
+    {#if isVertical()}
+    <Notifications/>
+    <Weather/>
+    <svelte:component this={page} {params}/>
+    {:else}
     <div id="sidebar">
         <Sidebar active={currentRoute}/>
     </div>
@@ -100,7 +108,9 @@
     
     <div id="extra">
         <Notifications/>
+        <Weather/>
     </div>
+    {/if}
 </main>
 
 
@@ -116,6 +126,8 @@
 
     :global(p, h1, h2, h3, button, pre) {
         color: var(--main-color);
+        overflow: hidden;
+        overflow-wrap: break-word;
     }
 
     :global(a) {

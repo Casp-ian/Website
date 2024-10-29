@@ -134,6 +134,10 @@
         margin: 2rem 5rem 2rem 5rem;
     }
 
+    pre {
+        overflow: hidden;
+    }
+
     img {
         width: 100%;
     }
