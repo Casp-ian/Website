@@ -1,80 +1,70 @@
 <script>
-  import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
-  let test = {x: 0, y: 0, color: "red"}
+	let test = { x: 0, y: 0, color: 'red' };
 
-  let up = true;
-  let left = true;
+	let up = true;
+	let left = true;
 
-  // TODO randomise these >:)
-  const speedUp = 50;
-  const speedLeft = 27;
+	// TODO randomise these >:)
+	const speedUp = 50;
+	const speedLeft = 27;
 
-  const max = 5000
+	const max = 5000;
 
-  onMount(async () => {
-    setInterval(tick, 50)
-  })
-  
-  function tick() {
-    if (up) {
-      test.y += speedUp;
-    } else {
-      test.y -= speedUp;
-    }
+	onMount(async () => {
+		setInterval(tick, 50);
+	});
 
-    if (left) {
-      test.x += speedLeft;
-    } else {
-      test.x -= speedLeft;
-    }
+	function tick() {
+		if (up) {
+			test.y += speedUp;
+		} else {
+			test.y -= speedUp;
+		}
 
-    if (test.y >= max) {
-      up = false;
-      test.color = "red"
-    } else if (test.y <= 0) {
-      up = true
-      test.color = "green"
-    }
-    
-    if (test.x >= max) {
-      left = false;
-      test.color = "blue"
-    } else if (test.x <= 0) {
-      left = true
-      test.color = "yellow"
-    }
+		if (left) {
+			test.x += speedLeft;
+		} else {
+			test.x -= speedLeft;
+		}
 
-    test = test;
-  }
+		if (test.y >= max) {
+			up = false;
+			test.color = 'red';
+		} else if (test.y <= 0) {
+			up = true;
+			test.color = 'green';
+		}
 
+		if (test.x >= max) {
+			left = false;
+			test.color = 'blue';
+		} else if (test.x <= 0) {
+			left = true;
+			test.color = 'yellow';
+		}
+
+		test = test;
+	}
 </script>
 
-
-<div id="block" style="--top: {test.y / max}; --left: {test.x / max}; background-color: {test.color}">
-  <p>hello!</p>
-</div>
-
+<p
+	id="block"
+	style="top: calc({test.y / max} * 100%); left: calc({test.x / max} * 100%); color: {test.color}"
+>
+	HELLO!
+</p>
 
 <style>
-  #block {
-    width: 100px;
-    height: 41px;
-    position: relative;
-    top: calc(var(--top) * (100% - 41px));
-    left: calc(var(--left) * (100% - 100px));
+	#block {
+		width: fit-content;
+		height: fit-content;
+		position: relative;
 
-    background-color: var(--accent-color);
+		transform: translate(-50%, -50%);
 
-    text-align: center;
-    vertical-align: middle;
-    line-height: 41px;
-
-
-  }
-
-  p {
-    color: black;
-  }
-
+		font-size: 40px;
+		line-height: 40px;
+	}
 </style>

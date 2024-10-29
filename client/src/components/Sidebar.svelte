@@ -1,28 +1,21 @@
 <script>
-    import Footer from "./Footer.svelte";
-    import Header from "./Header.svelte";
-
-    export let active;
-  // TODO
-
-
+	import Footer from '$components/Footer.svelte';
+	import Header from '$components/Header.svelte';
 </script>
 
-
 <div id="wrapper">
-  <Header active={active}/>
-  
-  <Footer />
+	<Header />
+
+	<Footer />
 </div>
 
-
 <style>
+	#wrapper {
+		display: flex;
+		flex-direction: column;
 
-  #wrapper {
-    display: flex;
-    flex-direction: column;
-    
-    align-content: center;
-  }
-
+		height: 100%;
+		justify-content: space-between;
+		align-content: center;
+	}
 </style>

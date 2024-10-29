@@ -1,24 +1,28 @@
 <script>
-    import PrettyLink from "../components/PrettyLink.svelte";
-    import BuffFrog from "../assets/buff_frog_ImageToText_example.png";
-    import Acerola from "../assets/acerola_ImageToText_example.png";
-    import PrettyImage from "../components/PrettyImage.svelte";
+	import PrettyLink from '$components/PrettyLink.svelte';
+	import BuffFrog from '$assets/buff_frog_ImageToText_example.png';
+	import Acerola from '$assets/acerola_ImageToText_example.png';
+	import PrettyImage from '$components/PrettyImage.svelte';
 </script>
 
-
 <div id="wrapper">
+	<PrettyLink url="https://github.com/Casp-ian/ImageToText">The repo</PrettyLink>
 
-    <PrettyLink url="https://github.com/Casp-ian/ImageToText">The repo</PrettyLink>
+	<h1>First part</h1>
 
-    <h1>First part</h1>
-        
-    <p> In febuary i started making a little command line tool to transform images to text. </p>
-    <p> The reason was mostly to be able to send images in video game chats and discord servers where i didnt have image persmissions. </p>
-    <p> And i decided to make it in rust, mostly because some youtuber said rust was great for CLI applications (clap is a great package). </p>
+	<p>In febuary i started making a little command line tool to transform images to text.</p>
+	<p>
+		The reason was mostly to be able to send images in video game chats and discord servers where i
+		didnt have image persmissions.
+	</p>
+	<p>
+		And i decided to make it in rust, mostly because some youtuber said rust was great for CLI
+		applications (clap is a great package).
+	</p>
 
-    <p> Mostly the first results were a little ugly and squished. </p>
+	<p>Mostly the first results were a little ugly and squished.</p>
 
-    <pre>
+	<pre>
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
@@ -70,22 +74,24 @@
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣫⢕⢕⢕⣫⣫⣫⣿⣫⣫⢕⡈⢕⣫⢕⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣫⢕⢕⣫⣿⣿⣿⣿⣿⣫⣫⢕⢕⢕⢕⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
     </pre>
-        
-    <p> And so i gave up, and forgot about it for a while. </p>
-    
-    <h1>Now</h1>
 
-    <p>
-        In august (the month im writing this) i got motivated 
-        <PrettyLink img={null} url="https://www.youtube.com/watch?v=gg40RWiaHRY">by this cool video</PrettyLink>
-        .
-    </p>
+	<p>And so i gave up, and forgot about it for a while.</p>
 
-    <p> I implemented part of the algorithms acerola implemented</p>
-    <p> For now i still need to make make the lines more reliable </p>
-    <p> I also plan to add quantized colors using the main ansi color codes </p>
-        
-    <pre>
+	<h1>Now</h1>
+
+	<p>
+		In august (the month im writing this) i got motivated
+		<PrettyLink img={null} url="https://www.youtube.com/watch?v=gg40RWiaHRY"
+			>by this cool video</PrettyLink
+		>
+		.
+	</p>
+
+	<p>I implemented part of the algorithms acerola implemented</p>
+	<p>For now i still need to make make the lines more reliable</p>
+	<p>I also plan to add quantized colors using the main ansi color codes</p>
+
+	<pre>
 ..........................................................................."."""""""""""""""""""""""""""""""""
 ....................................................................................""""""""""""""""""""""""""
 ........................./"+?#oo+?\............/?##??o"...................................."""""""""""""""""""
@@ -122,24 +128,18 @@
 
     </pre>
 
-    <p> And i added colors! (with rgb ansi color codes) </p>
+	<p>And i added colors! (with rgb ansi color codes)</p>
 
-    <PrettyImage src={BuffFrog} alt="buff frog image example"/>
-
+	<PrettyImage src={BuffFrog} alt="buff frog image example" />
 </div>
 
-
 <style>
-    #wrapper {
-        margin: 2rem 5rem 2rem 5rem;
-    }
+	#wrapper {
+		margin: 2rem 5rem 2rem 5rem;
+	}
 
-    pre {
-        overflow: hidden;
-    }
-
-    img {
-        width: 100%;
-    }
+	pre {
+		overflow: hidden;
+	}
 
 </style>
