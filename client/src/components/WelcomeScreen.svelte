@@ -20,6 +20,7 @@
 <style>
 	div {
 		height: 60vh;
-		/*background-color: var(--accent-color)*/
+		background-color: var(--accent-color);
+		overflow: hidden;
 	}
 </style>

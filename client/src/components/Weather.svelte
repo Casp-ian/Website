@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { weather } from '$stores/weather';
 
 	let current_weather = 'none';
@@ -15,15 +15,20 @@
 	let width = 0;
 	let height = 0;
 
+	let interval: number;
 	onMount(async () => {
 		// TODO maybe just get rid of the interval when weather == 'none', dont think it has too much impact tho
 		// tho it could be neat to have a specific `spawnSnow()` and `moveSnow()` and so forth
-		setInterval(() => {
+		interval = setInterval(() => {
 			spawnPrecipitation();
 			movePrecipitation();
 			clearPrecipitation();
 		}, generatorDelay);
 	});
+
+	onDestroy(async () => {
+		clearInterval(interval);
+	})
 
 	weather.subscribe((value) => {
 		precipitants = [];

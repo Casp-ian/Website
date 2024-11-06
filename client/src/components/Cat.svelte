@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	export let startX = 0;
 	export let startY = 0;
@@ -189,11 +189,19 @@
 		mouse.y = event.clientY + window.scrollY;
 	}
 
+	let updateInterval: number;
+	let animateInterval: number;
+	
 	onMount(async () => {
-		setInterval(update, 110);
-		setInterval(animate, 110);
+		updateInterval = setInterval(update, 110);
+		animateInterval = setInterval(animate, 110);
 		document.onmousemove = updateMouse;
 	});
+
+	onDestroy(async () => {
+		clearInterval(updateInterval);
+		clearInterval(animateInterval);
+	})
 </script>
 
 <div

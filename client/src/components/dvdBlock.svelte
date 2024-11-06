@@ -1,10 +1,15 @@
-<script>
-	import { onMount } from 'svelte';
+<script lang="ts">
+	import { onDestroy, onMount } from 'svelte';
 
-	let test = { x: 0, y: 0, color: 'red' };
+	export let text = "Hello :3";
 
-	let up = true;
-	let left = true;
+	let block: HTMLElement;
+	let area: HTMLElement;
+
+	let test = { x: 0, y: 0, color: '' };
+
+	let up = false;
+	let left = false;
 
 	// TODO randomise these >:)
 	const speedUp = 50;
@@ -12,9 +17,22 @@
 
 	const max = 5000;
 
+	let interval: number;
 	onMount(async () => {
-		setInterval(tick, 50);
+		adjust();
+		
+		tick();
+		interval = setInterval(tick, 50);
 	});
+
+	onDestroy(async () => {
+		clearInterval(interval);
+	});
+
+	function adjust() {
+		area.style.width = "calc( 100% - " + block.clientWidth + "px)";
+		area.style.height = "calc( 100% - " + block.clientHeight + "px)";
+	}
 
 	function tick() {
 		if (up) {
@@ -45,26 +63,38 @@
 			test.color = 'yellow';
 		}
 
-		test = test;
+		block.style.color = test.color;
+		block.style.left = "calc((" + test.x + " / " + max + ") * 100%)";
+		block.style.top = "calc((" + test.y + " / " + max + ") * 100%)";
 	}
 </script>
 
-<p
-	id="block"
-	style="top: calc({test.y / max} * 100%); left: calc({test.x / max} * 100%); color: {test.color}"
+
+<div
+	id="area"
+	bind:this={area}
 >
-	HELLO!
-</p>
+	<p
+		id="block"
+		bind:this={block}
+	>
+		{text}
+	</p>
+</div>
 
 <style>
+	#area {
+		/* width and height gets adjusted from js */
+	}
+
 	#block {
 		width: fit-content;
 		height: fit-content;
 		position: relative;
 
-		transform: translate(-50%, -50%);
-
 		font-size: 40px;
 		line-height: 40px;
+		margin: 0;
+		padding: 0;
 	}
 </style>

@@ -1,9 +1,11 @@
 <script>
 	import { isTouch, isVertical } from '$lib/Responsiveness';
 	import Sidebar from '$components/Sidebar.svelte';
+	import MobileNav from '$components/MobileNav.svelte';
 	import Notifications from '$components/Notifications.svelte';
 	import Weather from '$components/Weather.svelte';
 	import { onMount } from 'svelte';
+	import WelcomeScreen from '$components/WelcomeScreen.svelte';
 
 	let vertical = $state(false);
 	let touch = $state(false);
@@ -20,18 +22,23 @@
 
 <main>
 	{#if vertical}
+	
 		{#if touch}
+			<MobileNav/>
 			<!-- todo header for touch screens -->
 		{:else}
 			<!-- todo header for vertical screens -->
 		{/if}
+
 
 		<Notifications />
 		<Weather />
 		<div id="mobileWrapper">
 			{@render children()}
 		</div>
+	
 	{:else}
+	
 		<div id="sidebar">
 			<Sidebar />
 		</div>

@@ -81,7 +81,7 @@
 
 	<p>
 		In august (the month im writing this) i got motivated
-		<PrettyLink img={null} url="https://www.youtube.com/watch?v=gg40RWiaHRY"
+		<PrettyLink img={undefined} url="https://www.youtube.com/watch?v=gg40RWiaHRY"
 			>by this cool video</PrettyLink
 		>
 		.
