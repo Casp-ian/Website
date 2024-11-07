@@ -2,6 +2,9 @@
 	import { page } from '$app/stores';
 
 	// TODO a lot of bullshit here is a pain, dont know how to change it tho
+	// - header isnt a fitting name anymore
+	// - spacing and everything isnt concistent
+	// - isnt readable
 
 	const mainPaths = {
 		home: '/home',

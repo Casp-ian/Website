@@ -6,6 +6,7 @@
 	import Weather from '$components/Weather.svelte';
 	import { onMount } from 'svelte';
 	import WelcomeScreen from '$components/WelcomeScreen.svelte';
+	import VerticalNav from '$components/VerticalNav.svelte';
 
 	let vertical = $state(false);
 	let touch = $state(false);
@@ -24,9 +25,10 @@
 	{#if vertical}
 	
 		{#if touch}
-			<MobileNav/>
+			<MobileNav />
 			<!-- todo header for touch screens -->
 		{:else}
+			<VerticalNav />
 			<!-- todo header for vertical screens -->
 		{/if}
 
@@ -90,6 +92,9 @@
 		min-height: 100vh;
 		width: 100vw;
 		background-color: var(--back-color);
+
+		/* TODO does this even do anything? it is supposed to stop shit from adding scroll if they go off screen */
+	  /* clip: rect(0, auto, auto, 0); */
 	}
 
 	#sidebar {
@@ -99,8 +104,9 @@
 
 	#page {
 		box-shadow: 0 0 0.5rem var(--back-color2);
-		width: 55vw;
-		padding: 2.5vw;
+		width: 50vw;
+		padding: 2rem 5rem 2rem 5rem;
+		overflow: hidden;
 	}
 
 	#extra {
@@ -110,6 +116,7 @@
 
 	#mobileWrapper {
 		width: 100%;
-		padding: 2.5vw;
+		padding: 2rem 5rem 2rem 5rem;
+		overflow: hidden;
 	}
 </style>

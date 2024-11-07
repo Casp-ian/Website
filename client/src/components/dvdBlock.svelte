@@ -6,12 +6,13 @@
 	let block: HTMLElement;
 	let area: HTMLElement;
 
-	let test = { x: 0, y: 0, color: '' };
+	let test = { x: 2500, y: 2500, color: 'pink' };
 
-	let up = false;
-	let left = false;
+	let up = true;
+	let left = true;
 
 	// TODO randomise these >:)
+	// TODO these are relative to area width and height, i might want to fix that
 	const speedUp = 50;
 	const speedLeft = 27;
 
@@ -60,7 +61,7 @@
 			test.color = 'blue';
 		} else if (test.x <= 0) {
 			left = true;
-			test.color = 'yellow';
+			test.color = 'pink';
 		}
 
 		block.style.color = test.color;
@@ -71,18 +72,28 @@
 
 
 <div
-	id="area"
-	bind:this={area}
+	id="wrapper"
 >
-	<p
-		id="block"
-		bind:this={block}
+	<div
+		id="area"
+		bind:this={area}
 	>
-		{text}
-	</p>
+		<p
+			id="block"
+			bind:this={block}
+		>
+			{text}
+		</p>
+	</div>
 </div>
 
 <style>
+	#wrapper {
+		width: calc(100% - 2px);
+		height: calc(100% - 2px);
+		border: solid 1px black;
+	}
+	
 	#area {
 		/* width and height gets adjusted from js */
 	}
