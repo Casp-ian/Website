@@ -23,7 +23,6 @@
 
 <main>
 	{#if vertical}
-	
 		{#if touch}
 			<MobileNav />
 			<!-- todo header for touch screens -->
@@ -32,15 +31,12 @@
 			<!-- todo header for vertical screens -->
 		{/if}
 
-
 		<Notifications />
 		<Weather />
 		<div id="mobileWrapper">
 			{@render children()}
 		</div>
-	
 	{:else}
-	
 		<div id="sidebar">
 			<Sidebar />
 		</div>
@@ -94,7 +90,7 @@
 		background-color: var(--back-color);
 
 		/* TODO does this even do anything? it is supposed to stop shit from adding scroll if they go off screen */
-	  /* clip: rect(0, auto, auto, 0); */
+		/* clip: rect(0, auto, auto, 0); */
 	}
 
 	#sidebar {

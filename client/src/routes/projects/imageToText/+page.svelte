@@ -130,7 +130,6 @@
 
 <PrettyImage src={BuffFrog} alt="buff frog image example" />
 
-
 <style>
 	pre {
 		overflow: hidden;

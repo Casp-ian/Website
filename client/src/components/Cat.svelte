@@ -191,7 +191,7 @@
 
 	let updateInterval: number;
 	let animateInterval: number;
-	
+
 	onMount(async () => {
 		updateInterval = setInterval(update, 110);
 		animateInterval = setInterval(animate, 110);
@@ -201,7 +201,7 @@
 	onDestroy(async () => {
 		clearInterval(updateInterval);
 		clearInterval(animateInterval);
-	})
+	});
 </script>
 
 <div

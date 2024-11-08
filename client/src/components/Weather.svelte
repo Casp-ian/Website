@@ -28,7 +28,7 @@
 
 	onDestroy(async () => {
 		clearInterval(interval);
-	})
+	});
 
 	weather.subscribe((value) => {
 		precipitants = [];

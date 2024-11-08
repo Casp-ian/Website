@@ -2,11 +2,9 @@
 	import Header from '$components/Header.svelte';
 </script>
 
-
 <div id="thingy">
 	<Header />
 </div>
-
 
 <style>
 	#thingy {

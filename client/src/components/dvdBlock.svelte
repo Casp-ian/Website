@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 
-	export let text = "Hello :3";
+	export let text = 'Hello :3';
 
 	let block: HTMLElement;
 	let area: HTMLElement;
@@ -21,7 +21,7 @@
 	let interval: number;
 	onMount(async () => {
 		adjust();
-		
+
 		tick();
 		interval = setInterval(tick, 50);
 	});
@@ -31,8 +31,8 @@
 	});
 
 	function adjust() {
-		area.style.width = "calc( 100% - " + block.clientWidth + "px)";
-		area.style.height = "calc( 100% - " + block.clientHeight + "px)";
+		area.style.width = 'calc( 100% - ' + block.clientWidth + 'px)';
+		area.style.height = 'calc( 100% - ' + block.clientHeight + 'px)';
 	}
 
 	function tick() {
@@ -65,23 +65,14 @@
 		}
 
 		block.style.color = test.color;
-		block.style.left = "calc((" + test.x + " / " + max + ") * 100%)";
-		block.style.top = "calc((" + test.y + " / " + max + ") * 100%)";
+		block.style.left = 'calc((' + test.x + ' / ' + max + ') * 100%)';
+		block.style.top = 'calc((' + test.y + ' / ' + max + ') * 100%)';
 	}
 </script>
 
-
-<div
-	id="wrapper"
->
-	<div
-		id="area"
-		bind:this={area}
-	>
-		<p
-			id="block"
-			bind:this={block}
-		>
+<div id="wrapper">
+	<div id="area" bind:this={area}>
+		<p id="block" bind:this={block}>
 			{text}
 		</p>
 	</div>
@@ -93,7 +84,7 @@
 		height: calc(100% - 2px);
 		border: solid 1px black;
 	}
-	
+
 	#area {
 		/* width and height gets adjusted from js */
 	}
