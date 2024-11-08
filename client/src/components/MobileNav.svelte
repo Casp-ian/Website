@@ -13,9 +13,8 @@
 	})
 
 	function scrollStart(event: TouchEvent) {
-		// TODO disable scroll
 		firstTouch = event.changedTouches;
-	}
+  }
 	
 	function scroll(event: TouchEvent) {
 		touchDiff = (
@@ -24,13 +23,14 @@
 		) / 3;
 
 		adjustButtons();
+
+		return false;
 	}
 	
 	function scrollEnd(event: TouchEvent) {
 		distance = distance + touchDiff;
 		touchDiff = 0;
 
-		// TODO reenable scroll
 		// TODO momentum
 	}
 
@@ -88,6 +88,7 @@
 
 <style>
 	.item {
+		touch-action: none; /* disable scrolling when moving the nav */
 		background-color: var(--interactable-color);
 		z-index: 9;
 		position: fixed;
