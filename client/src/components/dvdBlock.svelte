@@ -82,7 +82,7 @@
 	#wrapper {
 		width: calc(100% - 2px);
 		height: calc(100% - 2px);
-		border: solid 1px black;
+		border: solid 1px white;
 	}
 
 	#area {

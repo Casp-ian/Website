@@ -4,10 +4,10 @@
 
 <div id="links">
 	<hr />
-	<PrettyLink url="github.com/Casp-ian">github</PrettyLink>
-	<PrettyLink url="github.com/Casp-ian">matpat :)</PrettyLink>
-	<PrettyLink url="samme.xyz">samme :3</PrettyLink>
-	<PrettyLink url="www.youtube.com/watch?v=dQw4w9WgXcQ">
+	<PrettyLink url="https://github.com/Casp-ian">github</PrettyLink>
+	<PrettyLink url="https://matpat.nl">matpat :)</PrettyLink>
+	<PrettyLink url="https://samme.xyz">samme :3</PrettyLink>
+	<PrettyLink url="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
 		i have no other links :)
 	</PrettyLink>
 </div>
