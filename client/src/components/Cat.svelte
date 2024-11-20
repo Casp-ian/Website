@@ -4,80 +4,114 @@
 	export let startX = 0;
 	export let startY = 0;
 
-	// -99-: stunned, -1: running, 0-9: sitting, 10-19: idle, 20-29: petting, 30-39: sleeping,
-	let catState = -1;
-	let runDirection = 0;
-	// run direction laid out like
-	// 704
-	// 3X1
-	// 625
+	enum State {
+		Stunned,
+		Idle,
+		Running,
+		Purring,
+		Sleeping,
+	}
+	enum Direction {
+		Up,
+		Right,
+		Down,
+		Left,
+		TopRight,
+		BottomRight,
+		BottomLeft,
+		TopLeft,
+	}
+
+	let catState: State = State.Stunned;
+	let runDirection: Direction = Direction.Up;
+	// this is in frames
+	let catStateTimer = 9;
+
+	// used for animation mainly
 	let imageOffset = { x: -32, y: -96 };
 	let even = false;
 
-	let mouseMoveCount = 0;
+	// used for movement mainly
+	let mousePos = { x: startX, y: startY };
+	let catPos = { x: startX, y: startY };
 
-	let mouse = { x: startX, y: startY };
-	let cat = { x: startX, y: startY };
+	let distance = 0;
+	let catVector = { x: 0, y: 0 };
 
+	function manageCatState() {
+		// console.log("cat is: " + catState + " and is waiting for " + catStateTimer);
+		if ( catStateTimer > 0 ) {
+			catStateTimer -= 1;
+			return;
+		}
+
+		switch (catState) {
+			case State.Stunned:
+				if (distance > 50) {
+					catState = State.Running;
+				} else {
+					catState = State.Idle;
+				}
+				break;
+			case State.Idle:
+				if (distance > 40) {
+					catState = State.Stunned;
+					catStateTimer = 9;
+					resetPet(); // every other exit out of idle state needs reset pet
+				} else if (checkIfPet()) {
+					catState = State.Purring;
+					catStateTimer = 9;
+				}
+				// TODO do idle animation maybe
+				// TODO fall asleep maybe
+				break;
+			case State.Running:
+				if (distance < 20) {
+					catState = State.Idle;
+				} else {
+					run();
+				}
+				break;
+			case State.Purring:
+				catState = State.Idle;
+				break;
+      case State.Sleeping:
+				catState = State.Idle;
+				break;
+		}
+
+		setRunDirection();
+	}
+
+	function run() {
+		let speed = even ? 13 : 12; //differ speed to make movement more "natural"
+		catPos.x += catVector.x * speed;
+		catPos.y += catVector.y * speed;
+
+		// clamp x
+		if (catPos.x > ( window.innerWidth - 16 )) {
+			catPos.x = ( window.innerWidth - 16 );
+		} else if (catPos.x < 16) {
+			catPos.x = 16;
+		}
+
+		// clamp y
+		if (catPos.y > ( window.innerHeight - 16 )) {
+			catPos.y = ( window.innerHeight - 16 );
+		} else if (catPos.y < 16) {
+			catPos.y = 16;
+		}
+
+		catPos = catPos;
+	}
+	
 	function update() {
 		// cat movement logic
-		let diff = { x: mouse.x - cat.x, y: mouse.y - cat.y };
-		const distance = Math.sqrt(diff.x * diff.x + diff.y * diff.y);
-		let speed = even ? 13 : 12; //differ speed to make movement more "natural"
-		let unit = { x: diff.x / distance, y: diff.y / distance };
+		let diff = { x: mousePos.x - catPos.x, y: mousePos.y - catPos.y + window.scrollY };
+		distance = Math.sqrt(diff.x * diff.x + diff.y * diff.y);
+		catVector = { x: diff.x / distance, y: diff.y / distance };
 
-		setRunDirection(unit);
-
-		// stunned
-		if (catState < -1) {
-			catState += 1;
-			return;
-		}
-
-		// running
-		if (catState == -1) {
-			// check if should sit
-			if (distance < 50) {
-				catState = 0;
-				mouseMoveCount = 0;
-				return;
-			}
-
-			// TODO clamp to screen, remember cat width and height
-			// move
-			cat.x += unit.x * speed;
-			cat.y += unit.y * speed;
-
-			return;
-		}
-
-		// sitting
-		if (0 <= catState && catState < 10) {
-			// check if should run
-			if (distance > 50) {
-				catState = -5;
-				return;
-			}
-
-			if (checkIfPet()) {
-				catState = 20;
-			}
-
-			return;
-		}
-
-		// petting
-		if (20 <= catState && catState < 30) {
-			catState++;
-			if (catState == 30) {
-				catState = 0;
-			}
-
-			return;
-		}
-
-		// self assign to make svelte realize it needs to update
-		cat = cat;
+		manageCatState();
 	}
 
 	function animate() {
@@ -86,12 +120,12 @@
 		let y = even ? 0 : -32;
 
 		// stunning
-		if (catState < -1) {
+		if (catState == State.Stunned) {
 			imageOffset = { x: -288, y };
 		}
 
 		// running
-		if (catState == -1) {
+		if (catState == State.Running) {
 			switch (runDirection) {
 				case 0:
 					imageOffset = { x: -32, y };
@@ -121,72 +155,96 @@
 		}
 
 		// sitting
-		if (catState == 0) {
+		if (catState == State.Idle) {
 			imageOffset = { x: 0, y: -32 };
 		}
 
 		// petting
-		if (20 <= catState && catState < 30) {
+		if (catState == State.Purring) {
 			imageOffset = { x: -352, y };
 		}
 	}
 
-	function setRunDirection(unit: { x: number; y: number }) {
+	function setRunDirection() {
 		// cardinal directions
-		if (unit.y < -0.88) {
-			runDirection = 0;
-			// imageOffset = {x: -32, y: yOffset};
+		if (catVector.y < -0.88) {
+			runDirection = Direction.Up;
 			return;
 		}
-		if (unit.x > 0.88) {
-			runDirection = 1;
-			// imageOffset = {x: -64, y: yOffset};
+		if (catVector.x > 0.88) {
+			runDirection = Direction.Right;
 			return;
 		}
-		if (unit.y > 0.88) {
-			runDirection = 2;
-			// imageOffset = {x: -96, y: yOffset};
+		if (catVector.y > 0.88) {
+			runDirection = Direction.Down;
 			return;
 		}
-		if (unit.x < -0.88) {
-			runDirection = 3;
-			// imageOffset = {x: -128, y: yOffset};
+		if (catVector.x < -0.88) {
+			runDirection = Direction.Left;
 			return;
 		}
 
 		// diagonals
-		if (unit.x > 0 && unit.y < 0) {
-			runDirection = 4;
-			// imageOffset = {x: -160, y: yOffset};
+		if (catVector.x > 0 && catVector.y < 0) {
+			runDirection = Direction.TopRight;
 		}
-		if (unit.x > 0 && unit.y > 0) {
-			runDirection = 5;
-			// imageOffset = {x: -192, y: yOffset};
+		if (catVector.x > 0 && catVector.y > 0) {
+			runDirection = Direction.BottomRight;
 		}
-		if (unit.x < 0 && unit.y > 0) {
-			runDirection = 6;
-			// imageOffset = {x: -224, y: yOffset};
+		if (catVector.x < 0 && catVector.y > 0) {
+			runDirection = Direction.BottomLeft;
 		}
-		if (unit.x < 0 && unit.y < 0) {
-			runDirection = 7;
-			// imageOffset = {x: -256, y: yOffset};
+		if (catVector.x < 0 && catVector.y < 0) {
+			runDirection = Direction.TopLeft;
 		}
 	}
 
+	let petScore = 0;
+	// this only uses cardinal directions
+	let lastPetDirection = Direction.Up;
+	
 	function checkIfPet() {
-		if (mouseMoveCount > 50) {
-			mouseMoveCount = 0;
+		let newPetQuarter;
+		if (catVector.y > 0) {
+			if (catVector.x > 0) {
+				newPetQuarter = Direction.TopRight;
+			} else {
+				newPetQuarter = Direction.TopLeft;
+			}
+		} else {
+			if (catVector.x > 0) {
+				newPetQuarter = Direction.BottomRight;
+			} else {
+				newPetQuarter = Direction.BottomLeft;
+			}
+		}
+
+		if (newPetQuarter != lastPetDirection) {
+			petScore++;
+			lastPetDirection = newPetQuarter;
+		}
+
+		if (petScore >= 4) {
+			document.body.style.cursor = "grab";
+		}
+		
+		if (petScore >= 9) {
+			petScore = 0;
+			document.body.style.cursor = "default";
 			console.log('meow');
 			return true;
 		}
 		return false;
 	}
 
+	function resetPet() {
+		petScore = 0;
+		document.body.style.cursor = "default";
+	}
+
 	function updateMouse(event: MouseEvent) {
-		mouseMoveCount++;
-		// currently does not update on scroll
-		mouse.x = event.clientX;
-		mouse.y = event.clientY + window.scrollY;
+		mousePos.x = event.clientX;
+		mousePos.y = event.clientY;
 	}
 
 	let updateInterval: number;
@@ -195,7 +253,7 @@
 	onMount(async () => {
 		updateInterval = setInterval(update, 110);
 		animateInterval = setInterval(animate, 110);
-		document.onmousemove = updateMouse;
+		document.addEventListener('mousemove', updateMouse);
 	});
 
 	onDestroy(async () => {
@@ -206,8 +264,9 @@
 
 <div
 	id="cat"
-	style="top: {cat.y}px; left: {cat.x}px; background-position-x: {imageOffset.x}px; background-position-y: {imageOffset.y}px;"
-/>
+	style="top: {catPos.y}px; left: {catPos.x}px; background-position-x: {imageOffset.x}px; background-position-y: {imageOffset.y}px;"
+>
+</div>
 
 <style>
 	#cat {
@@ -218,6 +277,5 @@
 		background-image: url('$assets/oneko2.png');
 		image-rendering: pixelated;
 		transform: translate(-50%, -50%);
-		overflow: hidden;
 	}
 </style>
