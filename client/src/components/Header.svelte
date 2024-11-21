@@ -7,7 +7,7 @@
 	// - isnt readable
 
 	const mainPaths = {
-		home: '/home',
+		home: '/',
 		projects: '/projects',
 	};
 
@@ -18,21 +18,22 @@
 		// "orbiting balls": "/projects/orbiting_balls",
 		'tagged files': '/projects/taggedFiles',
 		'image to text': '/projects/imageToText',
+		'mobile navigation': '/projects/mobileNav',
 		// "tanks": "/projects/tanks",
 	};
 </script>
 
 <div id="wrapper">
 	<nav id="main">
-		{#each Object.entries(mainPaths) as [name, component]}
-			<a href={component} class:active={$page.url.pathname.startsWith(component)}>{name}</a>
-		{/each}
+		<!-- TODO hate this repeating of shit -->
+		<a href="/" class:active={$page.url.pathname == "/"}>home</a>
+		<a href="/projects" class:active={$page.url.pathname.startsWith("/projects")}>projects</a>
 	</nav>
 
 	{#if $page.url.pathname.startsWith('/projects')}
 		<nav id="projects">
 			<!-- TODO make nice icon, also, not sure if this 'back arrow' looks good -->
-			<a href="/home">&lt=</a>
+			<a href="/">&lt=</a>
 			{#each Object.entries(projects) as [name, component]}
 				<a href={component} class:active={$page.url.pathname === component}>{name}</a>
 			{/each}

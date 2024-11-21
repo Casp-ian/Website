@@ -19,15 +19,20 @@
 	}
 </script>
 
+
+
 <!-- the normal image, as if pretty image was never even used -->
 <img on:click={open} {src} {alt} />
 
 <!-- big image, hidden untill image is clicked -->
 <div class="big" on:click={close} class:invisible>
 	<img class="big" {src} {alt} />
+	<!-- TODO maybe show alt text or other extra information here when big? -->
 </div>
 
 <svelte:window on:keydown={onKeyDown} />
+
+
 
 <style>
 	img {

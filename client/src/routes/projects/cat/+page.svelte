@@ -2,7 +2,9 @@
 	import Cat from '$components/Cat.svelte';
 </script>
 
-<Cat startX={50} startY={50} />
+{#each {length: 3} as _, i}
+	<Cat startX={Math.random() * 500} startY={Math.random() * 500} />
+{/each}
 
 <h1>haha funny kitty</h1>
 <p>meow meow</p>

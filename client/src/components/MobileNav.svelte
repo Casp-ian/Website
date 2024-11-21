@@ -39,6 +39,13 @@
 		},
 	]);
 
+	// TODO leon feedback:
+	// solid line er tussen
+	// voor nested outer orbit
+	// misschien text wegdoen en icons
+	// indicatie dat die dragable is
+	// eerste drag dee die niet diagonaal maar recht naar links
+
 	onMount(async () => {
 		adjustButtons(); // to make sure the buttons start in the right spot
 	})
@@ -122,7 +129,7 @@
 
 
 {#each fields as field}
-	<!-- TODO accessibility is imnportant!!! -->
+	<!-- i dont think people who use screen readers and such use touch devices, maybe of the accessibility options dont make sense because these are off screen untill dragged -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div
