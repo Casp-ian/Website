@@ -1,102 +1,89 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+    import {onDestroy, onMount} from 'svelte';
 
-	export let text = 'Hello :3';
+    export let text = 'Hello :3';
 
-	let block: HTMLElement;
-	let area: HTMLElement;
+    let block: HTMLElement;
 
-	let test = { x: 2500, y: 2500, color: 'pink' };
+    let color = 'pink';
 
-	let up = true;
-	let left = true;
+    // TODO randomise these >:)
+    // TODO these are relative to area width and height, i might want to fix that
+    let speedX = 2;
+    let speedY = 2;
 
-	// TODO randomise these >:)
-	// TODO these are relative to area width and height, i might want to fix that
-	const speedUp = 50;
-	const speedLeft = 27;
+    let x = 0;
+    let y = 0;
 
-	const max = 5000;
+    let maxX = 0;
+    let maxY = 0;
 
-	let interval: number;
-	onMount(async () => {
-		adjust();
+    let width = 0;
+    let height = 0;
 
-		tick();
-		interval = setInterval(tick, 50);
-	});
+    function setup() {
+        width = block.getBoundingClientRect().width;
+        height = block.getBoundingClientRect().height;
+        maxX = block.parentElement!.getBoundingClientRect().width - width;
+        maxY = block.parentElement!.getBoundingClientRect().height - height;
+    }
 
-	onDestroy(async () => {
-		clearInterval(interval);
-	});
+    let interval: number;
+    onMount(async () => {
+        setup();
+        tick();
+        interval = setInterval(tick, 10);
 
-	function adjust() {
-		area.style.width = 'calc( 100% - ' + block.clientWidth + 'px)';
-		area.style.height = 'calc( 100% - ' + block.clientHeight + 'px)';
-	}
+        window.addEventListener('resize', setup);
+    });
 
-	function tick() {
-		if (up) {
-			test.y += speedUp;
-		} else {
-			test.y -= speedUp;
-		}
+    onDestroy(async () => {
+        clearInterval(interval);
+    });
 
-		if (left) {
-			test.x += speedLeft;
-		} else {
-			test.x -= speedLeft;
-		}
+    function tick() {
+        y += speedY;
+        x += speedX;
 
-		if (test.y >= max) {
-			up = false;
-			test.color = 'red';
-		} else if (test.y <= 0) {
-			up = true;
-			test.color = 'green';
-		}
+        if (y >= maxY) {
+            speedY = -Math.abs(speedY);
+            y = y - (y % maxY);
+            color = 'red';
+        } else if (y <= 0) {
+            speedY = Math.abs(speedY);
+            y = Math.abs(y);
+            color = 'green';
+        }
 
-		if (test.x >= max) {
-			left = false;
-			test.color = 'blue';
-		} else if (test.x <= 0) {
-			left = true;
-			test.color = 'pink';
-		}
+        if (x >= maxX) {
+            speedX = -Math.abs(speedX);
+            x = x - (x % maxX);
+            color = 'blue';
+        } else if (x <= 0) {
+            speedX = Math.abs(speedX);
+            x = Math.abs(x);
+            color = 'pink';
+        }
 
-		block.style.color = test.color;
-		block.style.left = 'calc((' + test.x + ' / ' + max + ') * 100%)';
-		block.style.top = 'calc((' + test.y + ' / ' + max + ') * 100%)';
-	}
+        block.style.color = color;
+        block.style.left = x + 'px';
+        block.style.top = y + 'px';
+    }
 </script>
 
-<div id="wrapper">
-	<div id="area" bind:this={area}>
-		<p id="block" bind:this={block}>
-			{text}
-		</p>
-	</div>
-</div>
+<p id="block" bind:this={block}>
+    {text}
+</p>
 
 <style>
-	#wrapper {
-		width: calc(100% - 2px);
-		height: calc(100% - 2px);
-		border: solid 1px white;
-	}
+    #block {
+        width: fit-content;
+        height: fit-content;
+        position: relative;
 
-	#area {
-		/* width and height gets adjusted from js */
-	}
-
-	#block {
-		width: fit-content;
-		height: fit-content;
-		position: relative;
-
-		font-size: 40px;
-		line-height: 40px;
-		margin: 0;
-		padding: 0;
-	}
+        font-size: 40px;
+        line-height: 40px;
+        margin: 0;
+        padding: 0;
+    }
 </style>

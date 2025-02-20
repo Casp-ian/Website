@@ -1,118 +1,76 @@
 <script>
-	import { isTouch, isVertical } from '$lib/Responsiveness';
-	import Sidebar from '$components/Sidebar.svelte';
-	import MobileNav from '$components/MobileNav.svelte';
-	import Notifications from '$components/Notifications.svelte';
-	import Weather from '$components/Weather.svelte';
-	import { onMount } from 'svelte';
-	import WelcomeScreen from '$components/WelcomeScreen.svelte';
-	import VerticalNav from '$components/VerticalNav.svelte';
+    import Notifications from '$components/big/Notifications.svelte';
+    import Weather from '$components/big/Weather.svelte';
+    import Navigation from "$components/big/Navigation.svelte";
 
-	let vertical = $state(false);
-	let touch = $state(false);
-
-	onMount(() => {
-		vertical = isVertical();
-		touch = isTouch();
-
-		addEventListener('resize', () => (vertical = isVertical()));
-	});
-
-	let { children } = $props();
+    let {children} = $props();
 </script>
 
+<!-- Global stuffs-->
+<Notifications/>
+<Weather/>
+
 <main>
-	{#if vertical}
-		{#if touch}
-			<MobileNav />
-			<!-- todo header for touch screens -->
-		{:else}
-			<VerticalNav />
-			<!-- todo header for vertical screens -->
-		{/if}
-
-		<Notifications />
-		<Weather />
-		<div id="mobileWrapper">
-			{@render children()}
-		</div>
-	{:else}
-		<div id="sidebar">
-			<Sidebar />
-		</div>
-
-		<div id="page">
-			{@render children()}
-		</div>
-
-		<div id="extra">
-			<Notifications />
-			<Weather />
-		</div>
-	{/if}
+    <Navigation/>
+    <div id="center">
+        {@render children()}
+    </div>
 </main>
 
-<style>
-	:global(*) {
-		--main-color: #f7fff7;
-		--back-color: #240021;
-		--back-color2: #3d003a;
-		--interactable-color: #ed455c;
-		--accent-color: #8338ec;
-		transition: background-color 0.2s;
-	}
+<style lang="scss">
+  //$test: 600px;
 
-	:global(p, h1, h2, h3, button, pre) {
-		color: var(--main-color);
-		overflow: hidden;
-		overflow-wrap: break-word;
-	}
+  main {
+    //@media (min-width: $test) {
+    //  flex-direction: row;
+    //}
+    //@media not (min-width: $test) {
+    //  flex-direction: column;
+    //}
 
-	:global(a) {
-		color: var(--interactable-color);
-	}
+    flex-direction: row;
 
-	:root {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-			'Open Sans', 'Helvetica Neue', sans-serif;
-	}
+    display: flex;
+    flex-wrap: nowrap;
 
-	main {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    width: 100vw;
 
-		position: absolute;
-		top: 0;
-		left: 0;
-		min-height: 100vh;
-		width: 100vw;
-		background-color: var(--back-color);
+    /* TODO does this even do anything? it is supposed to stop shit from adding scroll if they go off screen */
+    //clip: rect(0, auto, auto, 0);
+  }
 
-		/* TODO does this even do anything? it is supposed to stop shit from adding scroll if they go off screen */
-		/* clip: rect(0, auto, auto, 0); */
-	}
+  #center {
+    position: absolute;
+    left: 20%;
+    width: 60%;
+  }
 
-	#sidebar {
-		width: 18vw;
-		padding: 1vw;
-	}
+  /*:global(*) {*/
+    /*    --main-color: #f7fff7;*/
+    /*    --back-color: #240021;*/
+    /*    --back-color2: #3d003a;*/
+    /*    --interactable-color: #ed455c;*/
+    /*    --accent-color: #8338ec;*/
+    /*    transition: background-color 0.2s;*/
+    /*}*/
 
-	#page {
-		box-shadow: 0 0 0.5rem var(--back-color2);
-		width: 50vw;
-		padding: 2rem 5rem 2rem 5rem;
-		overflow: hidden;
-	}
+    /*:global(p, h1, h2, h3, button, pre) {*/
+    /*    color: var(--main-color);*/
+    /*    overflow: hidden;*/
+    /*    overflow-wrap: break-word;*/
+    /*}*/
 
-	#extra {
-		width: 18vw;
-		padding: 1vw;
-	}
+    /*:global(a) {*/
+    /*    color: var(--interactable-color);*/
+    /*}*/
 
-	#mobileWrapper {
-		width: 100%;
-		padding: 2rem 5rem 2rem 5rem;
-		overflow: hidden;
-	}
+    /*:root {*/
+    /*    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,*/
+    /*    'Open Sans', 'Helvetica Neue', sans-serif;*/
+    /*}*/
+
 </style>
