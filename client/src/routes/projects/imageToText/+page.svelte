@@ -1,13 +1,13 @@
 <script>
 	import PrettyLink from '$components/PrettyLink.svelte';
 	import BuffFrog from '$assets/buff_frog_ImageToText_example.png';
-	import Acerola from '$assets/acerola_ImageToText_example.png';
 	import PrettyImage from '$components/PrettyImage.svelte';
 </script>
 
-<PrettyLink url="https://github.com/Casp-ian/ImageToText">The repo</PrettyLink>
 
 <h1>First part</h1>
+
+<PrettyLink url="https://github.com/Casp-ian/ImageToText">The repo</PrettyLink>
 
 <p>In febuary i started making a little command line tool to transform images to text.</p>
 <p>

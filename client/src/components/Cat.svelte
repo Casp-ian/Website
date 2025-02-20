@@ -271,7 +271,7 @@
 <style>
 	#cat {
 		pointer-events: none;
-		position: absolute;
+		position: fixed;
 		width: 32px;
 		height: 32px;
 		background-image: url('$assets/oneko2.png');
