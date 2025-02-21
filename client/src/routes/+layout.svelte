@@ -12,10 +12,10 @@
 <Weather/>
 
 <main>
-    <div class="desktop">
+    <div class="left desktop">
         <Navigation/>
     </div>
-    <div class="mobile">
+    <div class="left mobile">
         <MobileNavigation/>
     </div>
 
@@ -29,13 +29,21 @@
 
   @media not (min-width: $test) {
     .desktop {
+      width: 0;
       visibility: hidden;
+    }
+    .mobile {
+      width: 20vw;
     }
   }
 
   @media (min-width: $test) {
     .mobile {
+      width: 0;
       visibility: hidden;
+    }
+    .desktop {
+      width: 20vw;
     }
   }
 
@@ -63,9 +71,7 @@
   }
 
   #center {
-    position: absolute;
-    left: 20%;
-    width: 60%;
+    width: 60vw;
   }
 
   /*:global(*) {*/

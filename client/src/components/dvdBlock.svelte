@@ -9,8 +9,8 @@
 
     // TODO randomise these >:)
     // TODO these are relative to area width and height, i might want to fix that
-    let speedX = 2;
     let speedY = 2;
+    let speedX = 2;
 
     let x = 0;
     let y = 0;
@@ -39,6 +39,7 @@
 
     onDestroy(async () => {
         clearInterval(interval);
+        window.removeEventListener('resize', setup);
     });
 
     function tick() {
