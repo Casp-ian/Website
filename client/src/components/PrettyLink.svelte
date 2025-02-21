@@ -1,9 +1,13 @@
 <script>
     export let url;
-    export let img =
-        'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' +
-        url +
-        '&size=24';
+
+    export let img = '/src/assets/icons/link.svg';
+
+    // NOTE: it is cool to get the favicon of the linked websites, but relying on this random api is kinda eh
+    // export let img =
+    //     'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' +
+    //     url +
+    //     '&size=24';
 </script>
 
 <a href={url} target="_blank">

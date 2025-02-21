@@ -1,4 +1,5 @@
 <script lang="ts">
+    import {browser} from '$app/environment';
     import {onDestroy, onMount} from 'svelte';
 
     export let text = 'Hello :3';
@@ -37,18 +38,27 @@
         window.addEventListener('resize', setup);
     });
 
+
     onDestroy(async () => {
-        clearInterval(interval);
-        window.removeEventListener('resize', setup);
+        // onMount only gets called in browser, so we should only run this on browser too...
+        if (browser) {
+            clearInterval(interval);
+            window.removeEventListener('resize', setup);
+        }
     });
 
     function tick() {
+
         y += speedY;
         x += speedX;
 
-        if (y >= maxY) {
+        if (y > maxY) {
             speedY = -Math.abs(speedY);
-            y = y - (y % maxY);
+            if (maxY === 0) {
+                y = 0;
+            } else {
+                y = y - (y % maxY);
+            }
             color = 'red';
         } else if (y <= 0) {
             speedY = Math.abs(speedY);
@@ -56,9 +66,13 @@
             color = 'green';
         }
 
-        if (x >= maxX) {
+        if (x > maxX) {
             speedX = -Math.abs(speedX);
-            x = x - (x % maxX);
+            if (maxX === 0) {
+                x = 0;
+            } else {
+                x = x - (x % maxX);
+            }
             color = 'blue';
         } else if (x <= 0) {
             speedX = Math.abs(speedX);

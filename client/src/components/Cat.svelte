@@ -229,8 +229,7 @@
 		}
 		
 		if (petScore >= 9) {
-			petScore = 0;
-			document.body.style.cursor = "default";
+			resetPet();
 			console.log('meow');
 			return true;
 		}
@@ -239,7 +238,7 @@
 
 	function resetPet() {
 		petScore = 0;
-		document.body.style.cursor = "default";
+		document.body.style.cursor = "unset";
 	}
 
 	function updateMouse(event: MouseEvent) {

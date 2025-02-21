@@ -48,4 +48,10 @@ export const pages: Route[] = [
         path: '/projects',
         children: projects,
     },
+    {
+        name: 'friends',
+        icon: '/src/assets/icons/sparks.svg',
+        path: '/others',
+        children: [],
+    },
 ];
