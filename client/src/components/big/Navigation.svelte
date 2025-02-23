@@ -3,10 +3,7 @@
     import type {Route} from "$lib/navigation";
     import {pages} from "$lib/navigation";
 
-    function hasActive(path: string): boolean {
-        if (path === '/') {
-            return page.url.pathname === '/';
-        }
+    function isActive(path: string): boolean {
         return page.url.pathname.includes(path);
     }
 </script>
@@ -15,13 +12,13 @@
     <div class="column">
         {#each pages as page}
             <div class="row">
-                <a href="{page.path}" class:active="{hasActive(page.path)}">
+                <a href="{page.path}" class:active="{isActive(page.path)}">
                     <img src="{page.icon}" alt="">
                     {page.name}
                 </a>
-                <!--{#if hasActive(page.route.path)}-->
-                {@render children(page)}
-                <!--{/if}-->
+                {#if isActive(page.path)}
+                    {@render children(page)}
+                {/if}
             </div>
         {/each}
     </div>
@@ -30,7 +27,7 @@
 {#snippet children(parent: Route)}
     <div class="column">
         {#each parent.children as page}
-            <a href="{page.path}" class:active="{hasActive(page.path)}">
+            <a href="{page.path}" class:active="{isActive(page.path)}">
                 <img src="{page.icon}" alt="">
                 {page.name}
             </a>
@@ -75,16 +72,14 @@
     }
 
     .column {
+        height: max-content;
         display: flex;
         flex-direction: column;
     }
 
     .row {
+        height: 25px;
         display: flex;
         flex-direction: row;
-    }
-
-    #wrapper {
-        float: right;
     }
 </style>

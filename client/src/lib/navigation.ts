@@ -13,17 +13,17 @@ export type Route = {
 
 const projects: SubRoute[] = [
     {
-        name: 'this',
+        name: 'This',
         icon: '/src/assets/icons/pin.svg',
         path: '/projects/this',
     },
     {
-        name: 'cat',
+        name: 'Cat',
         icon: '/src/assets/icons/cat.svg',
         path: '/projects/cat',
     },
     {
-        name: 'imageToText',
+        name: 'ImageToText',
         icon: '/src/assets/icons/image.svg',
         path: '/projects/imageToText',
     },
@@ -31,27 +31,27 @@ const projects: SubRoute[] = [
 
 export const pages: Route[] = [
     {
-        name: 'home',
+        name: 'Home',
         icon: '/src/assets/icons/home.svg',
-        path: '/',
+        path: '/home',
         children: [],
     },
     {
-        name: 'settings',
+        name: 'Settings',
         icon: '/src/assets/icons/sliders.svg',
         path: '/settings',
         children: [],
     },
     {
-        name: 'projects',
-        icon: '/src/assets/icons/dashboard.svg',
-        path: '/projects',
-        children: projects,
-    },
-    {
-        name: 'friends',
+        name: 'Others',
         icon: '/src/assets/icons/sparks.svg',
         path: '/others',
         children: [],
+    },
+    {
+        name: 'Projects',
+        icon: '/src/assets/icons/dashboard.svg',
+        path: '/projects',
+        children: projects,
     },
 ];

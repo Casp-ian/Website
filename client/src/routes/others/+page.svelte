@@ -15,25 +15,25 @@
     <PrettyLink url="https://samme.xyz">Samme :3</PrettyLink>
 </div>
 
-<h2>Cool stuff</h2>
+<h2>Cool stuff people things</h2>
 <div class="list">
     <PrettyLink url="https://shaneliesegang.com/projects/wasmbots/">Wasmbots</PrettyLink>
     <PrettyLink url="https://100r.co/site/about.html">100 rabbits</PrettyLink>
 
 </div>
 
-<h2>Buttons</h2>
-<div class="grid">
-    <a href="https://adryd.com/" target="_blank">
-        <img src="https://adryd.com/static/buttons/adryd.png" alt="https://adryd.com/">
-    </a>
-    <a href="https://hl2.sh/" target="_blank">
-        <img src="https://adryd.com/static/buttons/jay.png" alt="https://hl2.sh/">
-    </a>
-    <a href="https://astrid.sh/" target="_blank">
-        <img src="https://astrid.sh/buttons/azzy.png" alt="https://astrid.sh/">
-    </a>
-</div>
+<!--<h2>Buttons</h2>-->
+<!--<div class="grid">-->
+<!--    <a href="https://adryd.com/" target="_blank">-->
+<!--        <img src="https://adryd.com/static/buttons/adryd.png" alt="https://adryd.com/">-->
+<!--    </a>-->
+<!--    <a href="https://hl2.sh/" target="_blank">-->
+<!--        <img src="https://adryd.com/static/buttons/jay.png" alt="https://hl2.sh/">-->
+<!--    </a>-->
+<!--    <a href="https://astrid.sh/" target="_blank">-->
+<!--        <img src="https://astrid.sh/buttons/azzy.png" alt="https://astrid.sh/">-->
+<!--    </a>-->
+<!--</div>-->
 
 
 <style>
