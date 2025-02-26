@@ -30,7 +30,7 @@
   @media not (min-width: $test) {
     .desktop {
       width: 0;
-      visibility: hidden;
+      display: none;
     }
     .mobile {
       width: 20vw;
@@ -40,7 +40,7 @@
   @media (min-width: $test) {
     .mobile {
       width: 0;
-      visibility: hidden;
+      display: none;
     }
     .desktop {
       width: 20vw;
@@ -65,9 +65,6 @@
     left: 0;
     min-height: 100vh;
     width: 100vw;
-
-    /* TODO does this even do anything? it is supposed to stop shit from adding scroll if they go off screen */
-    //clip: rect(0, auto, auto, 0);
   }
 
   #center {
