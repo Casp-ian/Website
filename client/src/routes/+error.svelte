@@ -1,15 +1,19 @@
 <script lang="ts">
-	import { page } from '$app/state';
+    import {page} from '$app/state';
+    import Pane from "$components/Pane.svelte";
 </script>
 
-<div id="wrapper">
-	<h1>oopsie :3</h1>
-	<p>got {page.status}'ed</p>
-	<p>{page.error?.message ?? ''}</p>
-</div>
+<Pane>
+    <h1>oopsie :3</h1>
+    <p>got {page.status}'ed</p>
+    <p>{page.error?.message ?? ''}</p>
+</Pane>
 
 <style>
-	#wrapper {
-		text-align: center;
-	}
+    pre, p, h1, h2, h3 {
+        padding: 1rem;
+        text-align: center;
+
+        margin: 0;
+    }
 </style>

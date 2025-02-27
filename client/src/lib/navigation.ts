@@ -11,7 +11,7 @@ export type Route = {
     children: SubRoute[],
 }
 
-const projects: SubRoute[] = [
+export const projects: SubRoute[] = [
     {
         name: 'This',
         icon: '/src/assets/icons/pin.svg',

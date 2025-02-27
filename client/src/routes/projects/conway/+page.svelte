@@ -1,40 +1,51 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
 
-	import wasm from '../../../../../wasm/conway/pkg';
-	import { Universe } from '../../../../../wasm/conway/pkg';
-	import PrettyLink from '$components/PrettyLink.svelte';
+    import wasm, {Universe} from '../../../../../wasm/conway/pkg';
+    import PrettyLink from '$components/PrettyLink.svelte';
+    import Pane from "$components/Pane.svelte";
 
-	let universe: any; // ohno!!! :0 any type!!!!
+    let universe: any; // ohno!!! :0 any type!!!!
 
-	let output = '';
+    let output = '';
 
-	function rerender() {
-		universe.tick();
-		output = universe.render();
-	}
+    function rerender() {
+        universe.tick();
+        output = universe.render();
+    }
 
-	onMount(async () => {
-		await wasm();
-		universe = Universe.new();
-		output = universe.render();
-	});
+    onMount(async () => {
+        await wasm();
+        universe = Universe.new();
+        output = universe.render();
+    });
 </script>
 
-<p>conway conway pvp webassembly</p>
-<PrettyLink url="https://rustwasm.github.io/docs/book/game-of-life/implementing.html"
-	>mostly learned from this great tutorial</PrettyLink
->
-<p>i still plan to expand this before making this portfolio public</p>
+<Pane>
 
-{#if !universe}
-	<p>web assembly loading...</p>
-{:else}
-	<pre on:click={() => rerender()}>{output}</pre>
-{/if}
+    <p>conway conway pvp webassembly</p>
+    <PrettyLink url="https://rustwasm.github.io/docs/book/game-of-life/implementing.html"
+    >mostly learned from this great tutorial
+    </PrettyLink
+    >
+    <p>i still plan to expand this before making this portfolio public</p>
+
+    {#if !universe}
+        <p>web assembly loading...</p>
+    {:else}
+        <pre on:click={() => rerender()}>{output}</pre>
+    {/if}
+
+
+</Pane>
 
 <style>
-	pre {
-		font-size: 20px;
-	}
+    pre, p, h1, h2, h3 {
+        padding: 1rem;
+        margin: 0;
+    }
+
+    pre {
+        font-size: 20px;
+    }
 </style>

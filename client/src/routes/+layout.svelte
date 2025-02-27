@@ -1,75 +1,45 @@
 <script>
-    import Notifications from '$components/big/Notifications.svelte';
     import Weather from '$components/big/Weather.svelte';
     import Navigation from "$components/big/Navigation.svelte";
-    import MobileNavigation from "$components/big/MobileNavigation.svelte";
 
     let {children} = $props();
 </script>
 
 <!-- Global stuffs-->
-<Notifications/>
 <Weather/>
+<!--<Notifications/>-->
 
-<main>
-    <div class="left desktop">
-        <Navigation/>
-    </div>
-    <div class="left mobile">
-        <MobileNavigation/>
-    </div>
+<Navigation/>
+<!--    <MobileNavigation/>-->
 
-    <div id="center">
-        {@render children()}
-    </div>
+<main id="main">
+    {@render children()}
 </main>
 
+
 <style lang="scss">
-  $test: 600px;
+  /*
+    Having everything absolute or relative like this will cause everything to layer on top of each other,
+    Also this means that every child will need to set pointer-events back to auto
+  */
+  div, main {
+    position: absolute;
 
-  @media not (min-width: $test) {
-    .desktop {
-      width: 0;
-      display: none;
-    }
-    .mobile {
-      width: 20vw;
-    }
-  }
-
-  @media (min-width: $test) {
-    .mobile {
-      width: 0;
-      display: none;
-    }
-    .desktop {
-      width: 20vw;
-    }
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
   }
 
   main {
-    //@media (min-width: $test) {
-    //  flex-direction: row;
-    //}
-    //@media not (min-width: $test) {
-    //  flex-direction: column;
-    //}
-
-    flex-direction: row;
-
-    display: flex;
-    flex-wrap: nowrap;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-height: 100vh;
-    width: 100vw;
+    position: relative;
   }
 
-  #center {
-    width: 60vw;
+  :global(body) {
+    background: #8338ec;
   }
+
 
   /*:global(*) {*/
   /*    --main-color: #f7fff7;*/

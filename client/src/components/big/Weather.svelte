@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { weather } from '$stores/weather';
 
-	let current_weather = 'none';
+	let current_weather = 'snow';
 
 	// weathers: rain, snow, sun, night
 	// export let weather = 'night';
