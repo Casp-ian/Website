@@ -12,7 +12,7 @@
 <Navigation/>
 <!--    <MobileNavigation/>-->
 
-<main id="main">
+<main>
     {@render children()}
 </main>
 

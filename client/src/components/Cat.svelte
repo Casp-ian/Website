@@ -225,6 +225,7 @@
 		}
 
 		if (petScore >= 4) {
+			// NOTE: this does not work when cat is on a div with pointer-events: none, which unfortunately is a large area of the page
 			document.body.style.cursor = "grab";
 		}
 		
