@@ -12,9 +12,6 @@
 
     let interval: number;
     onMount(async () => {
-        width = document.body.clientWidth;
-        height = document.body.clientHeight;
-
         // TODO maybe just get rid of the interval when weather == 'none', dont think it has too much impact tho
         // tho it could be neat to have a specific `spawnSnow()` and `moveSnow()` and so forth
         interval = setInterval(() => {
@@ -83,15 +80,21 @@
     }
 </script>
 
+
+<!-- TODO: this means particles cant spawn beneath the initial viewport, like when you scroll down -->
+<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
+
 {#each precipitants as precipitant}
     <p class="particle" style="left: {precipitant.x}px; top: {precipitant.y}px;">
         {precipitant.character}
     </p>
 {/each}
 
+
 <style>
     /*
-        TODO: clip particles outside of what is supposed to be the dimensions of the page,
+        TODO: when particles can spawn underneath the current viewport
+        clip particles outside of what is supposed to be the dimensions of the page,
         might be harder than expected because the particles also influence the dimensions
     */
     .particle {
