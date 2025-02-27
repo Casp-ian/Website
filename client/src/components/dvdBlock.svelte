@@ -86,9 +86,9 @@
     }
 </script>
 
-<p id="block" bind:this={block}>
+<strong id="block" bind:this={block}>
     {text}
-</p>
+</strong>
 
 <style>
     #block {

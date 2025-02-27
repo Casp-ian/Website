@@ -13,10 +13,10 @@
     div {
       overflow: auto;
 
-      box-shadow: 0 0 5px 5px white;
+      box-shadow: 0 0 5px 5px #C5BFD9;
       border-radius: 2px;
 
-      background: white;
+      background: #C5BFD9;
 
       pointer-events: auto;
       margin: 5vh 15vw;
