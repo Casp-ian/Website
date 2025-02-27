@@ -37,7 +37,7 @@
   }
 
   :global(body) {
-    background: #8338ec;
+    background: #1F0D30;
   }
 
 

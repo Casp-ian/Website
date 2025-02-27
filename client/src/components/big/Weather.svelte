@@ -2,11 +2,6 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { weather } from '$stores/weather';
 
-	let current_weather = 'snow';
-
-	// weathers: rain, snow, sun, night
-	// export let weather = 'night';
-
 	let generatorDelay = 400;
 	let maxParticles = 20;
 
@@ -30,13 +25,13 @@
 		clearInterval(interval);
 	});
 
-	weather.subscribe((value) => {
+	// clear particles when weather changes
+	weather.subscribe(() => {
 		precipitants = [];
-		current_weather = value;
 	});
 
 	function spawnPrecipitation() {
-		if (current_weather === 'none') {
+		if ($weather === 'none') {
 			return;
 		}
 
@@ -54,21 +49,28 @@
 	}
 
 	function movePrecipitation() {
-		if (current_weather === 'none') {
+		if ($weather === 'none') {
 			return;
 		}
 
 		precipitants.forEach((element) => {
-			if (element.character === '+') {
-				element.character = 'x';
-			} else if (element.character === 'x') {
-				element.character = '+';
+			let i = Math.round(Math.random() * 3);
+			switch (i) {
+				case 0:
+					element.character = 'x';
+					break;
+				case 1:
+					element.character = '+';
+					break;
+				case 2:
+					element.character = '*';
+					break;
 			}
 		});
 	}
 
 	function clearPrecipitation() {
-		if (current_weather === 'none') {
+		if ($weather === 'none') {
 			return;
 		}
 
@@ -92,6 +94,7 @@
 
 <style>
 	.particle {
+		color: white;
 		position: absolute;
 		user-select: none;
 		pointer-events: none;

@@ -1,3 +1,3 @@
 import { writable } from 'svelte/store';
 
-export const weather = writable('none');
+export const weather = writable('stars');

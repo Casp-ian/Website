@@ -11,21 +11,21 @@
 <nav id="wrapper">
     <div class="column">
         {#each pages as page}
-            <div class="row">
+            <div class="column">
                 <a href="{page.path}" class:active="{isActive(page.path)}">
                     <img src="{page.icon}" alt="">
                     {page.name}
                 </a>
-                {#if isActive(page.path)}
+                <!--{#if isActive(page.path)}-->
                     {@render children(page)}
-                {/if}
+                <!--{/if}-->
             </div>
         {/each}
     </div>
 </nav>
 
 {#snippet children(parent: Route)}
-    <div class="column">
+    <div class="offset column">
         {#each parent.children as page}
             <a href="{page.path}" class:active="{isActive(page.path)}">
                 <img src="{page.icon}" alt="">
@@ -38,8 +38,8 @@
 <style>
     #wrapper {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 1rem;
+        left: 0.5rem;
         pointer-events: auto;
     }
 
@@ -47,6 +47,7 @@
         height: 20px;
         width: auto;
         vertical-align: middle;
+        filter: invert(1);
     }
 
     a {
@@ -57,10 +58,10 @@
 
         text-wrap: nowrap;
 
-        border-top-left-radius: 7px;
-        border-bottom-left-radius: 7px;
+        /*border-top-left-radius: 7px;*/
+        /*border-bottom-left-radius: 7px;*/
 
-        background-image: linear-gradient(to right, rgb(100, 100, 100) 50%, white);
+        /*background-image: linear-gradient(to right, rgb(100, 100, 100) 50%, white);*/
 
         margin: 2px 0.5vw 2px 0.5vw;
 
@@ -68,8 +69,9 @@
     }
 
     .active {
-        background-image: linear-gradient(to right, rgba(100, 100, 100, 0.8) 50%, white),
-        linear-gradient(135deg, blueviolet 10%, rgba(0, 0, 0, 0));
+        text-decoration: underline;
+        /*background-image: linear-gradient(to right, rgba(100, 100, 100, 0.8) 50%, white),*/
+        /*linear-gradient(135deg, blueviolet 10%, rgba(0, 0, 0, 0));*/
     }
 
     nav {
@@ -82,10 +84,7 @@
         display: flex;
         flex-direction: column;
     }
-
-    .row {
-        height: 25px;
-        display: flex;
-        flex-direction: row;
+    .offset {
+        margin-left: 2rem;
     }
 </style>
