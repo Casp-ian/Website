@@ -17,12 +17,13 @@
         <h2>
             {project.name}
         </h2>
+        <a href={project.path}>You can find more here</a>
     </Pane>
 {/each}
 
 
 <style>
-    pre, p, h1, h2, h3 {
+    a, pre, p, h1, h2, h3 {
         padding: 1rem;
         margin: 0;
     }

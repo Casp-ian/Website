@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Snippet } from 'svelte'
+
     let { children }: { children: Snippet } = $props()
 </script>
 
@@ -13,7 +14,7 @@
     div {
       overflow: auto;
 
-      box-shadow: 0 0 5px 5px #C5BFD9;
+      box-shadow: 0 0 5px 5px black;
       border-radius: 2px;
 
       background: #C5BFD9;

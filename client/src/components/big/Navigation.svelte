@@ -37,9 +37,11 @@
 
 <style>
     #wrapper {
-        position: absolute;
+        position: sticky;
         top: 1rem;
-        left: 0.5rem;
+        left: 1vw;
+        height: 0;
+        width: 0;
         pointer-events: auto;
     }
 
@@ -51,7 +53,7 @@
     }
 
     a {
-        width: 9vw;
+        /*width: 10vw;*/
         color: white;
         text-decoration: none;
         text-align: left;
@@ -63,7 +65,7 @@
 
         /*background-image: linear-gradient(to right, rgb(100, 100, 100) 50%, white);*/
 
-        margin: 2px 0.5vw 2px 0.5vw;
+        margin: 0.1rem 0;
 
         overflow: hidden;
     }
@@ -80,11 +82,12 @@
     }
 
     .column {
+        width: 10vw;
         height: max-content;
         display: flex;
         flex-direction: column;
     }
     .offset {
-        margin-left: 2rem;
+        margin-left: 4vw;
     }
 </style>

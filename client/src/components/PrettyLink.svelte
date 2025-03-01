@@ -1,7 +1,8 @@
 <script>
     export let url;
 
-    export let img = '/src/assets/icons/link.svg';
+    import link from '$assets/icons/link.svg';
+    export let img = link;
 
     // NOTE: it is cool to get the favicon of the linked websites, but relying on this random api is kinda eh
     // export let img =

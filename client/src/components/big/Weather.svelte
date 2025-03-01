@@ -1,6 +1,7 @@
 <script lang="ts">
     import {onDestroy, onMount} from 'svelte';
     import {weather} from '$stores/weather';
+    import {afterNavigate} from "$app/navigation";
 
     let generatorDelay = 400;
     let maxParticles = 20;
@@ -9,6 +10,11 @@
 
     let width = 0;
     let height = 0;
+
+    const recalculateDimensions = () => {
+        width = Math.max(document.body.clientWidth, window.innerWidth);
+        height = Math.max(document.body.clientHeight, window.innerHeight);
+    }
 
     let interval: number;
     onMount(async () => {
@@ -19,7 +25,19 @@
             movePrecipitation();
             clearPrecipitation();
         }, generatorDelay);
+
+        recalculateDimensions();
+
+        window.addEventListener("resize", () => {
+            precipitants = [];
+            recalculateDimensions();
+        })
     });
+
+    afterNavigate(async () => {
+        precipitants = [];
+        recalculateDimensions();
+    })
 
     onDestroy(async () => {
         clearInterval(interval);
@@ -82,7 +100,7 @@
 
 
 <!-- TODO: this means particles cant spawn beneath the initial viewport, like when you scroll down -->
-<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
+<!--<svelte:window bind:innerWidth={width} bind:innerHeight={height} />-->
 
 {#each precipitants as precipitant}
     <p class="particle" style="left: {precipitant.x}px; top: {precipitant.y}px;">

@@ -20,7 +20,7 @@
         we'll see.
     </p>
 
-    <p>I am planning to show of my fun projects here and maybe market myself as a software engineer</p>
+    <p>I am planning to show of my fun projects here.</p>
     <p>
         Also, note that all my code that is bad is bad ON PURPOSE to undermine copilots training data :)
     </p>

@@ -6,10 +6,9 @@
 
     let block: HTMLElement;
 
-    let color = 'pink';
+    let color = 'yellow';
 
     // TODO randomise these >:)
-    // TODO these are relative to area width and height, i might want to fix that
     let speedY = 2;
     let speedX = 2;
 
@@ -77,7 +76,7 @@
         } else if (x <= 0) {
             speedX = Math.abs(speedX);
             x = Math.abs(x);
-            color = 'pink';
+            color = 'yellow';
         }
 
         block.style.color = color;

@@ -1,3 +1,13 @@
+// NOTE: this is kind of a pain if we need to import every icon to make svelte-kit work
+import pin from '$assets/icons/pin.svg';
+import cat from '$assets/icons/cat.svg';
+import image from '$assets/icons/image.svg';
+import home from '$assets/icons/home.svg';
+import sliders from '$assets/icons/sliders.svg';
+import sparks from '$assets/icons/sparks.svg';
+import dashboard from '$assets/icons/dashboard.svg';
+
+
 export type SubRoute = {
     name: string,
     icon: string,
@@ -14,17 +24,17 @@ export type Route = {
 export const projects: SubRoute[] = [
     {
         name: 'This',
-        icon: '/src/assets/icons/pin.svg',
+        icon: pin,
         path: '/projects/this',
     },
     {
         name: 'Cat',
-        icon: '/src/assets/icons/cat.svg',
+        icon: cat,
         path: '/projects/cat',
     },
     {
         name: 'ImageToText',
-        icon: '/src/assets/icons/image.svg',
+        icon: image,
         path: '/projects/imageToText',
     },
 ];
@@ -32,25 +42,25 @@ export const projects: SubRoute[] = [
 export const pages: Route[] = [
     {
         name: 'Home',
-        icon: '/src/assets/icons/home.svg',
+        icon: home,
         path: '/home',
         children: [],
     },
     {
         name: 'Settings',
-        icon: '/src/assets/icons/sliders.svg',
+        icon: sliders,
         path: '/settings',
         children: [],
     },
     {
         name: 'Others',
-        icon: '/src/assets/icons/sparks.svg',
+        icon: sparks,
         path: '/others',
         children: [],
     },
     {
         name: 'Projects',
-        icon: '/src/assets/icons/dashboard.svg',
+        icon: dashboard,
         path: '/projects',
         children: projects,
     },
