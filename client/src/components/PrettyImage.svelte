@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let src;
 	export let alt;
+	export let margin: string = "0px";
 
 	let invisible = true;
 
@@ -22,7 +23,7 @@
 
 
 <!-- the normal image, as if pretty image was never even used -->
-<img on:click={open} {src} {alt} />
+<img style="--margin: {margin}" on:click={open} {src} {alt} />
 
 <!-- big image, hidden untill image is clicked -->
 <div class="big" on:click={close} class:invisible>
@@ -36,7 +37,8 @@
 
 <style>
 	img {
-		width: 100%;
+		width: calc(100% - var(--margin, 0) * 2);
+		margin: var(--margin, 0);
 	}
 
 	img.big {

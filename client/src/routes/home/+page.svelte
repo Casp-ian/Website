@@ -4,8 +4,7 @@
 </script>
 
 <Pane>
-    <h1>HELLOOOOOOOOOOO</h1>
-
+    <h1>Woah look a top banner</h1>
 </Pane>
 
 <Pane>

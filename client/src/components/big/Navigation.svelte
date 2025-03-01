@@ -8,20 +8,19 @@
     }
 </script>
 
-<nav id="wrapper">
-    <div class="column">
-        {#each pages as page}
-            <div class="column">
-                <a href="{page.path}" class:active="{isActive(page.path)}">
-                    <img src="{page.icon}" alt="">
-                    {page.name}
-                </a>
-                <!--{#if isActive(page.path)}-->
-                    {@render children(page)}
-                <!--{/if}-->
-            </div>
-        {/each}
-    </div>
+
+<nav class="column">
+    {#each pages as page}
+        <div class="column">
+            <a href="{page.path}" class:active="{isActive(page.path)}">
+                <img src="{page.icon}" alt="">
+                {page.name}
+            </a>
+            <!--{#if isActive(page.path)}-->
+            {@render children(page)}
+            <!--{/if}-->
+        </div>
+    {/each}
 </nav>
 
 {#snippet children(parent: Route)}
@@ -35,14 +34,21 @@
     </div>
 {/snippet}
 
+
 <style>
-    #wrapper {
-        position: sticky;
-        top: 1rem;
+    nav {
+        position: fixed;
+        /*top: 1rem;*/
+        bottom: 5rem;
         left: 1vw;
-        height: 0;
-        width: 0;
         pointer-events: auto;
+    }
+
+    /* if not mobile we but the nav at the top */
+    @media (min-width: 500px) {
+        nav {
+            top: 1rem;
+        }
     }
 
     img {
@@ -53,7 +59,6 @@
     }
 
     a {
-        /*width: 10vw;*/
         color: white;
         text-decoration: none;
         text-align: left;
@@ -87,6 +92,7 @@
         display: flex;
         flex-direction: column;
     }
+
     .offset {
         margin-left: 4vw;
     }
