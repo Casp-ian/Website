@@ -1,8 +1,6 @@
 <script lang="ts">
-	import Cat from '$components/Cat.svelte';
-	import WelcomeScreen from '$components/WelcomeScreen.svelte';
-    import {projects} from '$lib/navigation';
-    import Pane from "$components/Pane.svelte";
+  import {projects} from '$lib/navigation';
+  import Pane from "$components/Pane.svelte";
 </script>
 
 <Pane>

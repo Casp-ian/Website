@@ -225,7 +225,7 @@
 		}
 
 		if (petScore >= 4) {
-			// NOTE: this does not work when cat is on a div with pointer-events: none, which unfortunately is a large area of the page
+			// TODO: This does not always work because the cat is not always above the body element
 			document.body.style.cursor = "grab";
 		}
 		
@@ -270,6 +270,7 @@
 
 <style>
 	#cat {
+		z-index: 1;
 		pointer-events: none;
 		position: fixed;
 		width: 32px;

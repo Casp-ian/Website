@@ -1,70 +1,79 @@
 <script lang="ts">
-	export let src;
-	export let alt;
-	export let margin: string = "0px";
+    import {onDestroy, onMount} from "svelte";
 
-	let invisible = true;
+    export let src;
+    export let alt;
+    export let margin: string = "0px";
 
-	function close() {
-		invisible = true;
-	}
+    let invisible = true;
+    let dialog: HTMLDialogElement;
 
-	function open() {
-		invisible = false;
-	}
+    function zoom(e: WheelEvent) {
+        if (invisible) {
+            return;
+        }
+        // TODO zoom
+        console.log(e.deltaY);
+    }
 
-	function onKeyDown(e: Event) {
-		if (e.keyCode == 27) {
-			close();
-		}
-	}
+    onMount(async () => {
+        addEventListener("wheel", zoom);
+    });
+
+    onDestroy(async () => {
+        removeEventListener("wheel", zoom);
+    });
+
+    function close() {
+        dialog.close();
+        document.body.style.overflow = "auto";
+        invisible = true;
+    }
+
+    function open() {
+        dialog.showModal();
+        document.body.style.overflow = "hidden";
+        invisible = false;
+    }
 </script>
 
 
-
 <!-- the normal image, as if pretty image was never even used -->
-<img style="--margin: {margin}" on:click={open} {src} {alt} />
+<img style="--margin: {margin}" onclick={open} {src} {alt}/>
 
-<!-- big image, hidden untill image is clicked -->
-<div class="big" on:click={close} class:invisible>
-	<img class="big" {src} {alt} />
-	<!-- TODO maybe show alt text or other extra information here when big? -->
-</div>
-
-<svelte:window on:keydown={onKeyDown} />
-
-
+<dialog
+    onclick={close}
+    bind:this={dialog}
+>
+    <img class="big" {src} {alt}/>
+</dialog>
 
 <style>
-	img {
-		width: calc(100% - var(--margin, 0) * 2);
-		margin: var(--margin, 0);
-	}
+    img {
+        display: block;
+        width: calc(100% - var(--margin, 0) * 2);
+        margin: var(--margin, 0);
+        cursor: pointer;
+    }
 
-	img.big {
-		position: fixed;
-		top: 50%;
-		left: 50%;
+    dialog {
+        padding: 0;
+        overflow: hidden;
 
-		transform: translate(-50%, -50%);
+        /*NOTE
+         There is a small white line at the bottom of the dialog, why?
+         No clue, but we hide it with this, but a small empty line remains
+        */
+        background: none;
+    }
 
-		max-width: 95vw;
-		max-height: 95vh;
+    img.big {
+        margin: 0;
 
-		width: auto;
-		height: auto;
-	}
+        max-width: 95vw;
+        max-height: 95vh;
 
-	div.big {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(150, 150, 150, 0.4);
-	}
+        width: 100%;
+    }
 
-	div.invisible {
-		visibility: hidden;
-	}
 </style>

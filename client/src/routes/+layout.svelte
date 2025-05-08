@@ -1,43 +1,63 @@
-<script>
+<script lang="ts">
     import Weather from '$components/big/Weather.svelte';
     import Navigation from "$components/big/Navigation.svelte";
+    import {onMount} from "svelte";
+    import BackgroundCanvas from "$components/big/BackgroundCanvas.svelte";
 
     let {children} = $props();
+
+
+
+
+
 </script>
 
 <!-- Global stuffs-->
 <Weather/>
 <!--<Notifications/>-->
 
-<Navigation/>
 <!--    <MobileNavigation/>-->
+<BackgroundCanvas/>
 
 <main>
-    {@render children()}
+    <div id="left">
+        <Navigation/>
+    </div>
+    <div id="center">
+        {@render children()}
+    </div>
+    <div id="right">
+
+    </div>
 </main>
 
 
 <style lang="scss">
+
+
   /*
     Having everything absolute or relative like this will cause everything to layer on top of each other,
     Also this means that every child will need to set pointer-events back to auto
   */
-  div, main {
-    position: absolute;
-
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    pointer-events: none;
+  main {
+    display: flex;
+    flex-direction: row;
   }
 
-  main {
-    position: relative;
+  #left, #right {
+    width: 15vw;
+  }
+
+  #center {
+    width: 70vw;
   }
 
   :global(body) {
-    background: #1F0D30;
+    margin: 0;
+    padding: 0;
+    //background: #160E1B;
+    //background-image: ;
+    background-image: url('https://sadhost.neocities.org/images/tiles/stars.gif');
   }
 
 
@@ -50,11 +70,12 @@
   /*    transition: background-color 0.2s;*/
   /*}*/
 
-  /*:global(p, h1, h2, h3, button, pre) {*/
-  /*    color: var(--main-color);*/
-  /*    overflow: hidden;*/
-  /*    overflow-wrap: break-word;*/
-  /*}*/
+
+  :global(p, h1, h2, h3, button, pre) {
+      color: white;
+      //overflow: hidden;
+      //overflow-wrap: break-word;
+  }
 
   /*:global(a) {*/
   /*    color: var(--interactable-color);*/

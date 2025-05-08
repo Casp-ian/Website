@@ -37,10 +37,6 @@
 
 <style>
     nav {
-        position: fixed;
-        /*top: 1rem;*/
-        bottom: 5rem;
-        left: 1vw;
         pointer-events: auto;
     }
 

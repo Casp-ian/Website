@@ -116,6 +116,7 @@
         might be harder than expected because the particles also influence the dimensions
     */
     .particle {
+        z-index: -2;
         color: white;
         position: absolute;
         user-select: none;

@@ -12,15 +12,11 @@
 
 <style lang="scss">
     div {
-      overflow: auto;
+      border-radius: 50px;
 
-      box-shadow: 0 0 5px 5px black;
-      border-radius: 2px;
+      //background: #C5BFD9;
+      backdrop-filter: blur(2px) brightness(120%);
 
-      background: #C5BFD9;
-
-      pointer-events: auto;
-      margin: 5vh 15vw;
-      width: 70vw;
+      margin: 5vh 0;
     }
 </style>
