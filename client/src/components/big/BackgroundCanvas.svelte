@@ -12,6 +12,15 @@
             ctx.strokeStyle = "orange";
             ctx.lineTo(2000, 2000);
             ctx.stroke();
+
+            const x = 200;
+            const y = 200;
+            const radius = 40;
+
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = "red";
+        ctx.fill();
     }
 
     onMount(async () => {
