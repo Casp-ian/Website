@@ -1,5 +1,6 @@
 <script lang="ts">
     import {onDestroy, onMount} from "svelte";
+    import { browser } from '$app/environment';
 
     export let src;
     export let alt;
@@ -21,7 +22,9 @@
     });
 
     onDestroy(async () => {
-        removeEventListener("wheel", zoom);
+        if (browser) {
+            removeEventListener("wheel", zoom);
+        }
     });
 
     function close() {

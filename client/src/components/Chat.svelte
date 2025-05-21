@@ -1,4 +1,5 @@
 <script>
+	// NOTE this is just a cool idea to have a chatbot, fake or real, probably fake is better, and funnier, and more doable
 </script>
 
 <p>

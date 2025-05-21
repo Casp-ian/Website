@@ -12,10 +12,9 @@
 
 <style lang="scss">
     div {
-      border-radius: 50px;
+      border-radius: 2rem;
 
-      //background: #C5BFD9;
-      backdrop-filter: blur(2px) brightness(120%);
+      backdrop-filter: blur(5px) brightness(50%);
 
       margin: 5vh 0;
     }

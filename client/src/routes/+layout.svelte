@@ -1,22 +1,14 @@
 <script lang="ts">
-    import Weather from '$components/big/Weather.svelte';
     import Navigation from "$components/big/Navigation.svelte";
-    import {onMount} from "svelte";
     import BackgroundCanvas from "$components/big/BackgroundCanvas.svelte";
+    import Notifications from "$components/big/Notifications.svelte";
 
     let {children} = $props();
-
-
-
-
-
 </script>
 
-<!-- Global stuffs-->
-<Weather/>
-<!--<Notifications/>-->
+<!-- Global stuffs go here! -->
 
-<!--    <MobileNavigation/>-->
+<!--<MobileNavigation/>-->
 <BackgroundCanvas/>
 
 <main>
@@ -27,7 +19,7 @@
         {@render children()}
     </div>
     <div id="right">
-
+        <Notifications/>
     </div>
 </main>
 
@@ -55,9 +47,8 @@
   :global(body) {
     margin: 0;
     padding: 0;
-    //background: #160E1B;
-    //background-image: ;
-    background-image: url('https://sadhost.neocities.org/images/tiles/stars.gif');
+
+    background-image: url('$assets/sigma.png');
   }
 
 

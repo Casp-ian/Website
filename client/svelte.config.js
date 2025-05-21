@@ -14,6 +14,7 @@ const config = {
 		alias: {
 			$stores: 'src/stores',
 			$components: 'src/components',
+			$wasm: '../wasm',
 			$assets: 'src/assets',
 		},
 	},

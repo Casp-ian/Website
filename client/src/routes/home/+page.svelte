@@ -1,15 +1,9 @@
 <script lang="ts">
-    import WelcomeScreen from '$components/WelcomeScreen.svelte';
     import Pane from "$components/Pane.svelte";
 </script>
 
 <Pane>
     <h1>Woah look a top banner</h1>
-</Pane>
-
-<Pane>
-
-    <WelcomeScreen/>
 </Pane>
 
 <Pane>
