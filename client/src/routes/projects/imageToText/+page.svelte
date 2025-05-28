@@ -10,29 +10,17 @@
 
     <h1>First part</h1>
 
-    <PrettyLink url="https://github.com/Casp-ian/ImageToText">WIP code available here</PrettyLink>
+    <p>The code is available <PrettyLink url="https://github.com/Casp-ian/ImageToText">here</PrettyLink></p>
 
-    <h2>
-        NOTE: this project is far from done lol, dont even know if ill finish this with how many other possible projects are
-        floating around...
-    </h2>
-
+</Pane>
+<Pane>
     <p>
         This is a project to turn images into ascii art, I am far from the first to make a project out of this.
         But there are a few features im planning to implement, mainly cool edge detection, and running on the GPU with a
         compute shader.
     </p>
 
-    <p>For now it is made in Rust with WGPU.</p>
-
-    <p>
-        The first presentable version looks like this, which is far from what i want.
-        The Ansi colors carry way too much of the images weight, and the actual ascii characters dont provide too much
-        worth.
-    </p>
-    <PrettyImage margin="1rem" src={BuffFrog} alt="buff frog image example"/>
-
-
+    <p>I chose to write it in Rust with WGPU.</p>
 
     <p>
         I had a lot of fun adding support for getting the users webcam as input, and making sure it worked on windows as well.

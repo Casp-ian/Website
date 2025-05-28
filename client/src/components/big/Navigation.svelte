@@ -9,17 +9,27 @@
 </script>
 
 
-<nav class="column">
+<nav>
     {#each pages as page}
-        <div class="column">
-            <a href="{page.path}" class:active="{isActive(page.path)}">
-                <img src="{page.icon}" alt="">
-                {page.name}
-            </a>
-            <!--{#if isActive(page.path)}-->
-            {@render children(page)}
-            <!--{/if}-->
-        </div>
+        {#if page.children.length === 0}
+            <div class="column">
+                <a href="{page.path}" class:active="{isActive(page.path)}">
+                    <img src="{page.icon}" alt="">
+                    {page.name}
+                </a>
+            </div>
+        {:else}
+            <div class="test">
+                <a href="{page.path}" class:active="{isActive(page.path)}">
+                    <img src="{page.icon}" alt="">
+                    {page.name}
+                </a>
+                <!--{#if isActive(page.path)}-->
+                {@render children(page)}
+                <!--{/if}-->
+            </div>
+        {/if}
+
     {/each}
 </nav>
 
@@ -37,14 +47,9 @@
 
 <style>
     nav {
-        pointer-events: auto;
-    }
-
-    /* if not mobile we but the nav at the top */
-    @media (min-width: 500px) {
-        nav {
-            top: 1rem;
-        }
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
     }
 
     img {
@@ -61,35 +66,44 @@
 
         text-wrap: nowrap;
 
-        /*border-top-left-radius: 7px;*/
-        /*border-bottom-left-radius: 7px;*/
+        border-radius: 1rem;
+        backdrop-filter: blur(5px) brightness(50%);
 
         /*background-image: linear-gradient(to right, rgb(100, 100, 100) 50%, white);*/
 
-        margin: 0.1rem 0;
-
-        overflow: hidden;
+        margin: 0.25rem;
+        padding: 0.1rem 0.2rem;
     }
 
     .active {
         text-decoration: underline;
-        /*background-image: linear-gradient(to right, rgba(100, 100, 100, 0.8) 50%, white),*/
-        /*linear-gradient(135deg, blueviolet 10%, rgba(0, 0, 0, 0));*/
     }
 
-    nav {
+    .column {
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .test {
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+
         display: flex;
         flex-direction: row;
     }
 
-    .column {
-        width: 10vw;
-        height: max-content;
-        display: flex;
-        flex-direction: column;
-    }
+    .test > a {
+        writing-mode: vertical-lr;
 
-    .offset {
-        margin-left: 4vw;
+        transform-origin: center;
+        transform: rotate(0.5turn);
+
+        padding: 0.2rem 0.1rem;
+
+        /*margin: auto 5px;*/
+        /*background: red;*/
+        /*height: 2rem;*/
     }
 </style>

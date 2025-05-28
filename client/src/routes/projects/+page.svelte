@@ -15,7 +15,8 @@
         <h2>
             {project.name}
         </h2>
-        <a href={project.path}>You can find more here</a>
+        <a href={project.path}>Link</a>
+        <p>Hihi</p>
     </Pane>
 {/each}
 

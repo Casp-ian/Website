@@ -59,7 +59,7 @@ export const pages: Route[] = [
         children: [],
     },
     {
-        name: 'Projects',
+        name: 'projects',
         icon: dashboard,
         path: '/projects',
         children: projects,

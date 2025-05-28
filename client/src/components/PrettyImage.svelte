@@ -6,6 +6,8 @@
     export let alt;
     export let margin: string = "0px";
 
+    let scale: number = 1;
+
     let invisible = true;
     let dialog: HTMLDialogElement;
 
@@ -13,8 +15,7 @@
         if (invisible) {
             return;
         }
-        // TODO zoom
-        console.log(e.deltaY);
+        scale += e.deltaY * 0.001;
     }
 
     onMount(async () => {
@@ -37,6 +38,7 @@
         dialog.showModal();
         document.body.style.overflow = "hidden";
         invisible = false;
+        scale = 1;
     }
 </script>
 
@@ -44,11 +46,12 @@
 <!-- the normal image, as if pretty image was never even used -->
 <img style="--margin: {margin}" onclick={open} {src} {alt}/>
 
+<!--NOTE might want to disable this on mobile, since they can already zoom in easier anyway-->
 <dialog
     onclick={close}
     bind:this={dialog}
 >
-    <img class="big" {src} {alt}/>
+    <img class="big" style="--scale: {scale}" {src} {alt}/>
 </dialog>
 
 <style>
@@ -63,20 +66,15 @@
         padding: 0;
         overflow: hidden;
 
-        /*NOTE
-         There is a small white line at the bottom of the dialog, why?
-         No clue, but we hide it with this, but a small empty line remains
-        */
         background: none;
     }
 
     img.big {
         margin: 0;
-
-        max-width: 95vw;
-        max-height: 95vh;
-
         width: 100%;
-    }
 
+        /* TODO we scale those */
+        transform: scale(var(--scale, 1), var(--scale, 1));
+        transform-origin: center;
+    }
 </style>
