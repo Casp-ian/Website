@@ -7,6 +7,9 @@
     export let margin: string = "0px";
 
     let scale: number = 1;
+    let center = "center";
+
+    let bigImage: HTMLImageElement;
 
     let invisible = true;
     let dialog: HTMLDialogElement;
@@ -15,7 +18,16 @@
         if (invisible) {
             return;
         }
+        let rect = bigImage.getBoundingClientRect();
+        let x = (e.clientX - rect.x) / rect.width * 100;
+        let y = (e.clientY - rect.y) / rect.height * 100;
+
+
         scale += e.deltaY * 0.001;
+        center = x + "% " + y + "%";
+
+        // bigImage.style.transform = "scale(" + scale + " " + scale + ")";
+        // bigImage.style.transformOrigin = x + "% " + y + "%";
     }
 
     onMount(async () => {
@@ -51,7 +63,9 @@
     onclick={close}
     bind:this={dialog}
 >
-    <img class="big" style="--scale: {scale}" {src} {alt}/>
+    <img
+            bind:this={bigImage}
+            class="big" style="--scale: {scale}; --center: {center}" {src} {alt}/>
 </dialog>
 
 <style>
@@ -75,6 +89,6 @@
 
         /* TODO we scale those */
         transform: scale(var(--scale, 1), var(--scale, 1));
-        transform-origin: center;
+        transform-origin: var(--center, center);
     }
 </style>
