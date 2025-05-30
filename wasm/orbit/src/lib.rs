@@ -1,73 +1,55 @@
-use wasm_bindgen::prelude::*;
 use js_sys::Float64Array;
+use wasm_bindgen::prelude::*;
 
 const GRAVITY: f64 = 0.1;
 
 #[wasm_bindgen]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Ball {
-    radius: f64,
-    x: f64,
-    y: f64,
+    pub radius: f64,
+    pub x: f64,
+    pub y: f64,
     vel_x: f64,
     vel_y: f64,
 }
 
-#[wasm_bindgen]
-pub struct Universe {
-    width: f64,
-    height: f64,
-    balls: Vec<Ball>,
+impl Ball {
+    fn new(radius: f64, x: f64, y: f64) -> Ball {
+        return Ball {
+            radius,
+            x,
+            y,
+            vel_x: 0.,
+            vel_y: 0.,
+        };
+    }
 }
 
-struct Correction {
-    ball_index: usize,
-    x: f64,
-    y: f64,
+#[wasm_bindgen]
+pub struct Universe {
+    center_x: f64,
+    center_y: f64,
+    balls: Vec<Ball>,
 }
 
 impl Universe {
     fn solve(&mut self) {
-
-        let mut corrections: Vec<Correction> = Vec::new();
-
-        for (index, ball) in self.balls.iter().enumerate() {
-            for (other_index, other_ball) in self.balls.iter().enumerate() {
-                let x = ball.x - other_ball.x;
-                let y = ball.y - other_ball.y;
-
-                let mut diff_x = 0.;
-                let mut diff_y = 0.;
-
-                if (x.abs() < ball.radius && y.abs() < ball.radius) {
-                    diff_x = x / 2.;
-                    diff_y = y / 2.;
-                }
-
-                corrections.push(Correction {ball_index: index, x: diff_x, y: diff_y});
-                }
-        }
-        
-        for (index, ball) in self.balls.iter_mut().enumerate() {
-            for correction in corrections.iter() {
-                if correction.ball_index == index {
-                    ball.x += correction.x;
-                    ball.y += correction.y;
-                }
-            }
-        }
+        // Do nothing
     }
 
     fn gravity(&mut self) {
         for ball in self.balls.iter_mut() {
-            let grav_vector = (ball.x.powf(2.) + ball.y.powf(2.)).sqrt();
-            let ratio_x = ball.x / grav_vector;
-            let ratio_y = ball.y / grav_vector;
+            let diff_x = ball.x - self.center_x;
+            let diff_y = ball.y - self.center_y;
+
+            let distance = (diff_x.powf(2.) + diff_y.powf(2.)).sqrt();
+
+            let ratio_x = diff_x / distance;
+            let ratio_y = diff_y / distance;
 
             ball.vel_x -= ratio_x * GRAVITY;
             ball.vel_y -= ratio_y * GRAVITY;
-
-        } 
+        }
     }
 
     fn apply(&mut self) {
@@ -86,39 +68,40 @@ impl Universe {
         self.solve();
     }
 
-    pub fn step(&mut self, miliseconds: u32) {
-        for i in 0..=miliseconds {
+    pub fn step(&mut self, milliseconds: u32) {
+        for i in 0..=milliseconds {
             self.tick();
         }
     }
 
     pub fn new() -> Universe {
-        let width = 64.;
-        let height = 64.;
+        let center_x = 100.;
+        let center_y = 100.;
 
         Universe {
-            width,
-            height,
+            center_x,
+            center_y,
             balls: vec![
-                Ball {radius: 50., x: 30., y: 30., vel_x: 0., vel_y: 0.},
-                Ball {radius: 40., x: -40., y: -20., vel_x: -0., vel_y: 0.},
-                Ball {radius: 30., x: 40., y: 0., vel_x: -0., vel_y: 0.},
-                Ball {radius: 20., x: 30., y: -30., vel_x: -0., vel_y: 0.},
-                Ball {radius: 10., x: 20., y: 30., vel_x: -0., vel_y: 0.},
+                Ball::new(50., 30., 30.),
+                Ball::new(40., 400., 20.),
+                Ball::new(30., 10., 300.),
+                Ball::new(20., 320., 130.),
+                Ball::new(10., 130., 320.),
             ],
         }
     }
 
-    //TODO this is kind of ugly, but were fighting with types between js and wasm here
-    pub fn get_x(&self) -> Float64Array {
-        Float64Array::from(&self.balls.iter().map(|ball| ball.x).collect::<Vec<f64>>()[..])
+    // TODO make js use this
+    pub fn get_ball(&self, i: usize) -> Ball {
+        return *self.balls.get(i).unwrap();
     }
 
-    pub fn get_y(&self) -> Float64Array {
-        Float64Array::from(&self.balls.iter().map(|ball| ball.y).collect::<Vec<f64>>()[..])
+    pub fn get_ball_count(&self) -> usize {
+        return self.balls.len();
     }
 
-    pub fn get_radius(&self) -> Float64Array {
-        Float64Array::from(&self.balls.iter().map(|ball| ball.radius).collect::<Vec<f64>>()[..])
+    pub fn set_center(&mut self, x: f64, y: f64) {
+        self.center_x = x;
+        self.center_y = y;
     }
 }

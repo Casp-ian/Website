@@ -11,11 +11,11 @@
 
     let bigImage: HTMLImageElement;
 
-    let invisible = true;
+    let zooming = true;
     let dialog: HTMLDialogElement;
 
     function zoom(e: WheelEvent) {
-        if (invisible) {
+        if (zooming) {
             return;
         }
         let rect = bigImage.getBoundingClientRect();
@@ -26,30 +26,35 @@
         scale += e.deltaY * 0.001;
         center = x + "% " + y + "%";
 
+        if (scale < 1) {
+            scale = 1;
+        }
+
         // bigImage.style.transform = "scale(" + scale + " " + scale + ")";
         // bigImage.style.transformOrigin = x + "% " + y + "%";
     }
 
     onMount(async () => {
         addEventListener("wheel", zoom);
+        dialog.addEventListener("close", close)
     });
 
-    onDestroy(async () => {
+    onDestroy(async () =>
+    {
         if (browser) {
             removeEventListener("wheel", zoom);
         }
     });
 
     function close() {
-        dialog.close();
         document.body.style.overflow = "auto";
-        invisible = true;
+        zooming = true;
     }
 
     function open() {
-        dialog.showModal();
+        dialog.showModal()
         document.body.style.overflow = "hidden";
-        invisible = false;
+        zooming = false;
         scale = 1;
     }
 </script>
@@ -60,7 +65,7 @@
 
 <!--NOTE might want to disable this on mobile, since they can already zoom in easier anyway-->
 <dialog
-    onclick={close}
+    onclick={() => dialog.close()}
     bind:this={dialog}
 >
     <img
@@ -85,7 +90,8 @@
 
     img.big {
         margin: 0;
-        width: 100%;
+        max-width: 95vw;
+        max-height: 95vh;
 
         /* TODO we scale those */
         transform: scale(var(--scale, 1), var(--scale, 1));
