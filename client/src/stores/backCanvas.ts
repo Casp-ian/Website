@@ -13,13 +13,15 @@ let block = (canvas: HTMLCanvasElement) => {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    let text = "Fuck you";
+    let text = "Welcome!";
 
-    ctx.font = "90px serif";
+    ctx.font = "90px cursive";
     ctx.fillStyle = "red";
+    ctx.strokeStyle = "black";
 
 
     ctx.fillText(text, x, y);
+    ctx.strokeText(text, x, y);
 
     let measurement = ctx.measureText(text);
 
