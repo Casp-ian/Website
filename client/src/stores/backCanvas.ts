@@ -11,7 +11,8 @@ let block = (canvas: HTMLCanvasElement) => {
 
     let ctx = canvas.getContext("2d")!;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // clear
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     let text = "Welcome!";
 
